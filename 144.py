@@ -1,4 +1,4 @@
-import math, numpy
+import math
 n = int(input())
 
 list = []
@@ -17,13 +17,22 @@ if n > 2:
 
 middle = math.ceil(len(list) / 2)
 
-left = numpy.prod(list[:middle])
+def mul_each(each):
+    result = 1
+    for i in each:
+        result = i * result
 
-right = numpy.prod(list[middle:])
+    return result
+
+left = mul_each(list[:middle])
+
+right = mul_each(list[middle:])
 
 # print(type(middle))
 # print(type(left))
-
+# print(list)
+# print(right)
+# print(left)
 point = [left, right]
 
 result = left + right -2
