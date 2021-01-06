@@ -1,41 +1,20 @@
-# import math
-a,b,x = map(int, input().split())
+A, B, X = map(int, input().split())
 
-# cri = [10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000]
-#
-# for i in range(0, 9):
-#     if a * cri[i] + b * len(str(cri[i])) <= x and a * cri[i] - 1 + b * len(str(cri[i] -1)) <= x:
-#         continue
-#     else:
-#         r = len(str(cri[i])) -1
-#         print(r)
-#         break
+# 買える判定↓
+def is_ok(N):
+    return A * N + B * len(str(N)) <= X
 
-# 値段の範囲
-l = 0
-r = 10**9
 
-while r >= l:
-    # if l == r:
-    #     print('答えは' + str(r) + ',' + str(l))
-    #     break
-    dif = r - l
-    mid = round((r + l) / 2)
-    # print('midは' + str(mid))
-    pri = a * mid + b * len(str(mid))
-
-    if dif <= 1:
-        # print('答えは' + str(r))
-        print(r)
-        break
-    # if pri == x:
-        # print(mid)
-    elif pri > x:
-        r = mid - 1
-        # print('rは' + str(r))
-    elif pri < x:
-        l = mid + 1
-        # print('lは' + str(l))
-# else:
-#     print(-1)
-
+ok = 0
+ng = 10 ** 9 + 1
+# 隣合うまで
+while ng - ok > 1:
+    m = (ok + ng) // 2
+    # 買えるなら左を動かす
+    if is_ok(m):
+        ok = m
+    # 買えないなら右を動かす
+    else:
+        ng = m
+# 小さい方を出力。←なぜかは分からない。。。
+print(ok)
