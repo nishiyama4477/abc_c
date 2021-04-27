@@ -18,3 +18,38 @@ while ng - ok > 1:
         ng = m
 # 小さい方を出力。←なぜかは分からない。。。
 print(ok)
+
+a, b, x = map(int, input().split())
+
+def isOK(N):
+    return a * N + b * len(str(N)) <= x
+
+l = 0
+r = 10 ** 9 + 1
+
+while r - l > 1:
+    m = (r + l) // 2
+    if isOK(m):
+        l = m
+    else:
+        r = m
+
+print(l)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
