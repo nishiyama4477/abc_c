@@ -1,9 +1,4 @@
-from operator import mul
-import math
-list = [1,2,3,4]
-list1 = [1,2,5,6]
-
-a = list + list1
-
-print(math.gcd(100000, 99999))
-
+a = [1,3,2,2,2]
+print(set(a))
+print(len(set(a)))
+print(len(a))
