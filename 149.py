@@ -1,46 +1,25 @@
 # 仮説１
-# 1: Xを素因数分解し、リスト化。ダブるものがあれば素数ではない
+# 1: 素数判定をし、素数だったらreturn、そうでないならforループで1足しながら判定
 # 2: X +1しながら試していく。
+import math
 
 X = int(input())
 
-def prime_factorizer(z):
-    list = []
-    while z % 2 == 0:
-        list.append(2)
-        z //= 2
-    f = 3
-    while f * f <= z:
-        if z % f == 0:
-            list.append(f)
-            z //= f
-        else:
-            f += 2
-    if z != 1:
-        list.append(z)
-    return list
+# 素数判定のプログラム
+def prime(z):
+    for i in range(2, int(math.sqrt(z)) + 1):
+        if z % i == 0:
+            return False
+    return True
 
-if 
-while len(prime_factorizer(X)) != len(set(prime_factorizer(X))):
-    X += 1
-    if len(prime_factorizer(X)) == len(set(prime_factorizer(X))):
-        print(X)
-        break
-    else:
-        continue
-
-else:
+if prime(X):
     print(X)
-
-
-
-
-
-
-
-
-
-
+# 素数になるまで1足しながらループを回す。
+else:
+    while not prime(X):
+        X += 1
+    else:
+        print(X)
 
 
 
