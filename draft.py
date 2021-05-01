@@ -1,4 +1,6 @@
-a = [1,3,2,2,2]
-print(set(a))
-print(len(set(a)))
-print(len(a))
+s1 = [1,2]
+p = (1,2)
+if s1 == p:
+    print('Yes')
+else:
+    print('No')
