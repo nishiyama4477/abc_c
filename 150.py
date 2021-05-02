@@ -14,8 +14,8 @@ B = 0
 for p, q in enumerate(itertools.permutations(range(1, N + 1))):
     # print(list(q))
     if list(q) == s1:
-        A = p
+        A = p + 1
     elif list(q) == s2:
-        B = p
+        B = p + 1
 
 print(abs(A - B))
