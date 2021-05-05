@@ -26,3 +26,19 @@ else:
             B = p + 1
 
 print(abs(A - B))
+
+
+# 参考
+# 手順：　ベースとなるlistを用意
+# 　　　　index.(s1),index.(s2)でindex値を取得
+# from itertools import permutaitons
+#
+# N = int(input())
+# nlist = [i+1 for i in range(N)]
+# s1 = tuple(int(x) for x in input().split())
+# s2 = tuple(int(x) for x in input().split())
+# S = list(permutaitons(nlist))
+#
+# A = S.index(s1)
+# B = S.index(s2)
+# print(abs(A - B))
