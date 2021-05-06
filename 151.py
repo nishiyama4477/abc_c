@@ -1,41 +1,45 @@
+# ポイント①: WAはACが出るまで、ACは一つの問題につき一つだけ→つまり,ACが出た時点で次の問題に移る
+# 検証1：　問題が変わればac_cntとwc_cntを0にリセット
+#         ACかつac_cntが0であればac += 1,wc += wc_cnt
+#         WCかつac_cntが0であればwc_cnt += 1
+
 n, m = map(int, input().split())
 
-a_list = []
-b_list = []
-
-corrects = 0
-penalties = 0
+sth = 'dammy'
+ac = 0
+wc = 0
+wc_cnt = 0
+ac_cnt = 0
 
 for i in range(m):
     a, b = map(str, input().split())
-    if a_list != [] and a not in a_list:
-         print('決算！')
-         print('a_listは', a_list)
-         print('b_listは', b_list)
-         if 'AC' in b_list:
-             corrects += 1
-             print('added to CORRECTS')
-         if 'WA' in b_list:
-             penalties += 1
-             print('added to PENALTIES')
-         a_list.clear()
-         b_list.clear()
-         a_list.append(a)
-         b_list.append(b)
+    if a != sth:
+        # print('switched!')
+        wc_cnt = 0
+        ac_cnt = 0
+        sth = a
+
+        if b == 'AC':
+            ac_cnt += 1
+            # print('ac_cnt += 1')
+            ac += 1
+            # print('ac += 1')
+        else:
+            wc_cnt += 1
+            # print('wc_cnt += 1')
+
     else:
-        print('pass')
-        a_list.append(a)
-        b_list.append(b)
-        print('a_listは', a_list)
-        print('b_listは', b_list)
-        if i == m - 1:
-            print('last処理')
-            if 'AC' in b_list:
-                corrects += 1
-                print('added to CORRECTS')
-            if 'WA' in b_list:
-                penalties += 1
-                print('added to PENALTIES')
+        if b == 'AC':
+            if ac_cnt == 0:
+                ac_cnt += 1
+                # print('ac_cnt += 1')
+                ac += 1
+                # print('ac += 1')
+                wc += wc_cnt
+                # print('wc += wc_cnt')
+        else:
+            if ac_cnt == 0:
+                wc_cnt += 1
+                # print('wc_cnt += 1')
 
-
-print(corrects, penalties)
+print(ac, wc)
