@@ -20,32 +20,30 @@ else:
     for _ in range(M):
         a, b = input().split()
         A.append([a, b])
-print(A)
 
+
+# dp1とは,その問題においてＡＣが「決算」されたかを表す。ＡＣのフラグ
 dp = [0] * (N + 1)
+# dp2とは,「ＡＣがある問題のフラグ」の列
 dp2 = [0] * (N + 1)
 cnt_w = 0
 cnt_a = 0
-print(dp)
-print(dp2)
+
 # dpもdp2もACの時だけ＋１される
 # seq[0]は問題番号
 # 2周しているforを
 # ↓このループはACがあるところのdp2を1にする
+# 定義として、ACがある問題だけが「決算」の対象となる。ここでは対象となる問題を割り出す。
 for seq in A:
     if seq[1] == "AC":
         dp2[int(seq[0])] = 1
-        print('dp2の' + seq[0] + 'が１になった')
 
-# このループは初のACを1にする かつ cnt_wが分からない?????
+# このループはその問題において初のACを足す。その問題において、ACが存在しない、つまり、dp2が[0]であればcnt_wはされない。
 
 for seq in A:
     if seq[1] == "AC" and dp[int(seq[0])] == 0:
         cnt_a += 1
-        print('cnt_aが+1された')
         dp[int(seq[0])] = 1
-        print('dpの' + seq[0] + 'が１になった')
     elif seq[1] == "WA" and dp[int(seq[0])] == 0 and dp2[int(seq[0])] == 1:
         cnt_w += 1
-        print('cnt_wが+1された')
 print(cnt_a, cnt_w)
