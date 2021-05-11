@@ -8,42 +8,30 @@
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 #
 # print(json.dumps(data))
-
 import sys
 
+input = sys.stdin.readline
 N, M = map(int, input().split())
-A = []
-if M == 0:
-    print(0, 0)
-    sys.exit()
-else:
-    for _ in range(M):
-        a, b = input().split()
-        A.append([a, b])
+PS = [input().strip().split() for i in range(M)]
+# PSは ['1', 'AC'), ('2', 'WA')~~~]みたいな感じ
 
+penalty = [0] * (N + 1)
+AC = [False] * (N + 1)
 
-# dp1とは,その問題においてＡＣが「決算」されたかを表す。ＡＣのフラグ
-dp = [0] * (N + 1)
-# dp2とは,「ＡＣがある問題のフラグ」の列
-dp2 = [0] * (N + 1)
-cnt_w = 0
-cnt_a = 0
+ac = 0
+for p, s in PS:
+    p = int(p)
+    if s == 'AC':
+        if not AC[p]:
+            ac += 1
+            AC[p] = True
+    else:
+        if not AC[p]:
+            penalty[p] += 1
+# ここで
+#penaltyは[0,0,2,1]
+#ACは[0,0,1,1]みたいな感じ
 
-# dpもdp2もACの時だけ＋１される
-# seq[0]は問題番号
-# 2周しているforを
-# ↓このループはACがあるところのdp2を1にする
-# 定義として、ACがある問題だけが「決算」の対象となる。ここでは対象となる問題を割り出す。
-for seq in A:
-    if seq[1] == "AC":
-        dp2[int(seq[0])] = 1
-
-# このループはその問題において初のACを足す。その問題において、ACが存在しない、つまり、dp2が[0]であればcnt_wはされない。
-
-for seq in A:
-    if seq[1] == "AC" and dp[int(seq[0])] == 0:
-        cnt_a += 1
-        dp[int(seq[0])] = 1
-    elif seq[1] == "WA" and dp[int(seq[0])] == 0 and dp2[int(seq[0])] == 1:
-        cnt_w += 1
-print(cnt_a, cnt_w)
+penalty = [p * a for p, a in zip(penalty, AC)]
+# ここでACフラグが1の所だけpenaltyを足したいが、そこでzipしてpenaltyとACの要素をひとつずつかけていくことで実現出来る。
+print(ac, sum(penalty))
