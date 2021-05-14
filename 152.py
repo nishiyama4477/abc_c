@@ -1,19 +1,25 @@
-# 仮説1: まず、jを見つける
-# 　　　　①条件の左側を用意。　例　Pi <= Pj のPi  *どっちでもいいとは思う。
-#      　②(1 <= j <= i)の範囲を定義、の内でひとつづづ判定していく。
-# 考察：　順番どうりに並んだpと、そのままのpがいる　→ そのままのリストをenumerateで取れれば、よくないか？
+# 仮説1: まずforループ
+#      左の条件はP[:i]、右はPi <= Pj
+#      P[:i]の全てのカズはPi <= Pjを満たす必要がある。
+#      今回はPiを軸として「bench」とおき、P[:i]をpとし、
+#      for q in pでqがbenchを下回ったときは条件に合わないと判断した。
+#      全て満たせばcountを+
 N = int(input())
-p = [int(i) for i in input().split()]
+P = [int(i) for i in input().split()]
 
-# i == 順番どうり並んだp  I == p
 count = 0
-for i, I in enumerate(p):
-    if I in list(set(p))[N - 3:]:
-        pass
-    else:
-        left = p[I + 1]
-        right = max(p[:I - 1])
-        if right >= left:
+
+for i, value in enumerate(P):
+
+    bench = P[value - 1]
+    # print(value)
+    p = P[:value]
+    # print(p)
+    # print(bench)
+    # ここでpの要素全てがbench以上でなければならない
+
+    for q in p:
+        if q < bench:
             count += 1
 
-print(count)
+print(N - count)
