@@ -7,10 +7,18 @@
 #
 # print(base64_message)
 
-N = int(input())
-p = [int(i) for i in input().split()]
+def Pythagoras_2(k :int, m :int, n: int) -> list:
+    answer = []
+    answer.append(k*(m**2 - n**2))
+    answer.append(2*k*m*n)
+    answer.append(k*(m**2 + n**2))
+    return answer
 
-print(set(p))
+for k in range(1,5):
+    for m in range(1,5):
+        for n in range(1,10):
+            if m <= n :
+                break
+            area = math.sqrt(((k+m+n)*(k+m-n)*(k-m+n)*(m+n-k))/16)
 
-print(list(set(p))[:N - 2])
-
+print('S={0}'.format(area))
