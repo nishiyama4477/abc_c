@@ -9,16 +9,11 @@
 #
 # print(json.dumps(data))
 
-a = [1,2,3,2,4,5]
+a = [1,2,3,4,4]
 
-print('sorted(a)[::-1]は', sorted(a)[::-1])
+print(max(a))
 
-print('sorted(a)[0::-1]は', sorted(a)[0::-1])
 
-b = sorted(a)[0:]
-n_a = b[::-1]
-
-print('n_aは', n_a)
 
 
 # print(sorted(a)[0::-1])
