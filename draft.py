@@ -9,9 +9,8 @@
 #
 # print(json.dumps(data))
 
-a = [1,2,3,4,4]
-
-print(max(a))
+list = ['c', 'b', 'a', 'c', 'b']
+print(set(list))
 
 
 
