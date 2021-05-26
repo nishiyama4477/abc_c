@@ -12,20 +12,30 @@ for i in range(N):
     if s not in set(list):
         list.append(s)
         counter.append(1)
-        print(list)
-        print(counter)
+        # print(list)
+        # print(counter)
     else:
         print('count up!')
         counter[list.index(s)] += 1
-        print(list)
-        print(counter)
+        # print(list)
+        # print(counter)
+
+# print('結果は', list)
+# print('結果は', counter)
+zipped = set(zip(list, counter))
+# print(zipped)
 
 max_value = max(counter)
 
-get_list = []
-for i in counter:
-    if i == max_value:
-        get_list.append(counter.index(i))
+for i in zipped:
+    if i[1] == max_value:
+        print(i[0])
 
-print(get_list)
+
+
+# print(set(zipped).get('bet'))
+
+
+
+
 
