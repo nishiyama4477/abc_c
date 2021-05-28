@@ -6,19 +6,13 @@
 # base64_message = base64_bytes.decode('ascii')
 #
 # print(base64_message)
+from collections import Counter
 
-def Pythagoras_2(k :int, m :int, n: int) -> list:
-    answer = []
-    answer.append(k*(m**2 - n**2))
-    answer.append(2*k*m*n)
-    answer.append(k*(m**2 + n**2))
-    return answer
-
-for k in range(1,5):
-    for m in range(1,5):
-        for n in range(1,10):
-            if m <= n :
-                break
-            area = math.sqrt(((k+m+n)*(k+m-n)*(k-m+n)*(m+n-k))/16)
-
-print('S={0}'.format(area))
+_count = Counter()
+# print(_count)
+_count.update('Welcome to Guru99 Tutorials!')
+print(_count)
+print('%s : %d' % ('u', _count['u']))
+# print('\n')
+# for char in 'Guru':
+#     print('%s : %d' % (char, _count[char]))

@@ -8,11 +8,3 @@
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 #
 # print(json.dumps(data))
-
-list = ['c', 'b', 'a', 'c', 'b']
-print(set(list))
-
-
-
-
-# print(sorted(a)[0::-1])
