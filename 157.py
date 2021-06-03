@@ -7,20 +7,15 @@ n, m = map(int, input().split())
 N = []
 for i in range(n):
     N.append(0)
-# print(N)
+print(N)
 
 for i in range(m):
     s, c = map(int, input().split())
-    # print('sは', s)
-    # print('cは', c)
+    print('sは', s)
+    print('cは', c)
     if s == 1 and c == 0:
-        print(-1)
-        break
-    elif N[s - 1] != 0:
         print(-1)
         break
     else:
         N[s - 1] = c
 
-if N[0] != 0:
-    print(N)
