@@ -6,9 +6,11 @@ import math
 
 a, b = map(int, input().split())
 
+# AとBは消費税抜きのそれぞれの値段
 A = a / 0.08
 B = b / 0.1
 
+# ループしながら回そうとしたが長過ぎ、かつ、不確か
 if A > B:
     new_B = B
     while new_B <= A:
