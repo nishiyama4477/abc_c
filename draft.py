@@ -1,3 +1,4 @@
+import math
 
 # import json
 # import base64
@@ -8,3 +9,10 @@
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 #
 # print(json.dumps(data))
+import math
+
+a = 3.4
+
+print(int(a))
+
+print(math.floor(a))

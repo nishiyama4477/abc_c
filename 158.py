@@ -1,36 +1,24 @@
 # 仮説
 # ①：AとBを出す。
 # ②：AとBが一緒ならそのまま出力、違う場合はどちらかに合わせてみる。
-# ③：whileを使って出来そう。。。。  小さい方を大きい方に合わせるのか、その逆なのか、それとも片方だけでいいのか
+# ③：whileを使って出来そう。。。。  ×whileじゃなくて一致させないといけないので一気に同じ値にする必要がある。
 import math
 
 a, b = map(int, input().split())
 
 # AとBは消費税抜きのそれぞれの値段
-A = a / 0.08
-B = b / 0.1
+# A = a / 0.08
+# B = b / 0.1
 
-# 一方に近づけてみてそれが成り立てば良いので
-# whileしながら小さい方をインクリメントして回そうとしたが長過ぎ、かつ、不確か
-if A > B:
-    new_B = B
-    while new_B <= A:
-        new_B = math.floor(new_B * 0.1)
-        if new_B == A:
-            B = new_B
-            break
-        new_B += 1
+# print('Aは',A)
+# print('Bは',B)
 
-if B > A:
-    new_A = A
-    while new_A <= B:
-        new_A = math.floor(new_A * 0.08)
-        if new_A == B:
-            A = new_A
-            break
-        new_A += 1
+for i in range(1001):
+    if int(i * 0.08) == a and int(i * 0.1) == b:
+        print(i)
+        exit()
 
-if A == B:
-    print(A)
-else:
-    print(-1)
+print(-1)
+
+
+

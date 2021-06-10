@@ -6,38 +6,43 @@
 # base64_message = base64_bytes.decode('ascii')
 #
 # print(base64_message)
-N, M = map(int, input().split())
 
-t = [-1] * N
+import math
 
-for _ in range(M):
-    s, c = map(int, input().split())
-    s -= 1
-    # 条件が二つ以上有るときつまり、①t[s]に先客がいる　かつ　②新規のｃである
-    if t[s] != -1 and t[s] != c:
-        print(-1)
-        exit()
-    t[s] = c
+a, b = map(int, input().split())
 
+# AとBは消費税抜きのそれぞれの値段
+A = a / 0.08
+B = b / 0.1
 
-# 2～3桁の場合は先頭が0だとダメ
-if N != 1:
-    if t[0] == 0:
-        print(-1)
-        exit()
+print(A)
+print(B)
 
-    if t[0] == -1:
-        t[0] = 1
-
-# 先頭以外で値が決まっていないものは0にする
-    for i in range(1, N):
-        if t[i] == -1:
-            t[i] = 0
-
-# 1桁の場合、入らなくても0のままいける。
+if A == B:
+    print(A)
+elif A != B:
+    if A < B:
+        # Aを変えてBに寄せたとき
+        A = B
+        print('Aは', A)
+        print('Bは', B)
+        if math.floor(A * 0.08) == a:
+            print('route1')
+            print(B)
+    # Bを変えてAに寄せたとき
+    elif A > B:
+        B = A
+        print('Aは', A)
+        print('Bは', B)
+        if math.floor(B * 0.1) == b:
+            print('route2')
+            print(A)
 else:
-    if t[0] == -1:
-        t[0] = 0
-#
-print(t)
-# print(''.join(map(str, t)))
+    print('失敗')
+
+
+# AとBをイコールにしないといけない
+
+
+# print(math.floor(B * 0.08))
+# print(math.floor(A * 0.1))
