@@ -7,13 +7,12 @@
 #
 # print(base64_message)
 
-l = int(input())
+list = [1,2,3,4,5]
 
-
-base = l * 10
-
-value = base / 3
-
-ans = value ** 3 / 1000
-
-print(ans)
+for i, v in enumerate(list):
+    print(v, 'だお')
+    for s, q in enumerate(list[i + 1:]):
+        print('sは', s)
+        print('qは', q)
+        # print(list[i:])
+        # print(abs(list[i] - list[s + 1]))
