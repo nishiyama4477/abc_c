@@ -6,3 +6,13 @@
 #少数の場合でも、同様
 # あとちなみにlの範囲は1<=l<=1000 役に立つかは分からない。
 
+l = int(input())
+
+
+base = l * 10
+
+value = base / 3
+
+ans = value ** 3 / 1000
+
+print(ans)
