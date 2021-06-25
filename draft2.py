@@ -7,12 +7,6 @@
 #
 # print(base64_message)
 
-list = [1,2,3,4,5]
-
-for i, v in enumerate(list):
-    print(v, 'だお')
-    for s, q in enumerate(list[i + 1:]):
-        print('sは', s)
-        print('qは', q)
-        # print(list[i:])
-        # print(abs(list[i] - list[s + 1]))
+print(13//4)
+print(min(1,2))
+print(2//6)

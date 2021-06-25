@@ -8,28 +8,20 @@
 # n = 2, k = 6の時、k=6を使って表すと n = 6*1 -4　原点を跨ぐとき値は4か2を取る
 # n = 13, k = 4の時、k=4を使って表すと n = 4*3 +1　原点を跨ぐとき値は1か３を取る
 # 上記の式の余りの部分をmとすると、取りうる値は m or k-mであることが分かる。つまりそれぞれのinputに対して m と k-mで小さい方が答えになるのではないか
+# また、原点を跨ぐまでのforの数はn/kである。
 
 n, k = map(int, input().split())
 
 if n % k == 0:
     print(0)
-    exit()
-else:
-    print('0じゃないよ')
+    # exit()
+elif n > k:
+    remain = n - k * (n//k)
+    # print(remain)
+    print(min(remain, k-remain))
+elif n < k:
+    remain = n - k * 1
+    # print(remain)
+    print(min(abs(remain), k-abs(remain)))
 
-def prime_factorizer(z):
-    list = []
-    while z % 2 == 0:
-        list.append(2)
-        z //= 2
-    f = 3
-    while f * f <= z:
-        if z % f == 0:
-            list.append(f)
-            z //= f
-        else:
-            f += 2
 
-    if z != 1:
-        list.append(z)
-    return list
