@@ -7,6 +7,8 @@
 #
 # print(base64_message)
 
-print(13//4)
-print(min(1,2))
-print(2//6)
+list = [1,1,3]
+
+list.sort()
+
+print(list)
