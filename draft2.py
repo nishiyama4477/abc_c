@@ -9,6 +9,4 @@
 
 list = [1,1,3]
 
-list.sort()
-
-print(list)
+print(list[1:])
