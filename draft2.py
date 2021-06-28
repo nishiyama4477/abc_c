@@ -7,6 +7,6 @@
 #
 # print(base64_message)
 
-list = [1,1,3]
-
-print(list[1:])
+import itertools
+l = itertools.combinations_with_replacement(range(3), range(3), range(3))
+print(l)
