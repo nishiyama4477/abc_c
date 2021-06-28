@@ -9,7 +9,7 @@ k = int(input())
 # またsortしたリストはuniqueで無ければならない。
 # maybe I can use 'enum' library ????? NO!! we can use itertools product!!
 
-l = list(itertools.product(range(1,k+1),range(1,k+1), range(1,k+1)))
+l = list(itertools.product(range(1,k+1),repeat=3))
 # print(l)
 
 total = 0
