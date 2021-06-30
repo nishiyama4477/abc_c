@@ -11,12 +11,16 @@ k = int(input())
 # 今回の問題は組み合わせの重複有り!!順列の重複有りや無しではない。
 # ポイントはitertoolsのどれを使うか。もしかしたら2重に掛けているのかも知れない
 
-l = list(itertools.product(range(1,k+1), repeat=3))
-# print(l)
-#
-total = 0
-for i in l:
-    count = math.gcd(i[0], math.gcd(i[1], i[2]))
-    total += count
+### TLEを解決するために
+# ①itertools.productは重複がある。例えば(1,2,1)と(2,1,1)←この考え方は間違っている。重複を外してしまうとそのときの値が取れなくなる。
+# ②改善の余地があるのは 1:itertoolsの列挙の部分なのか 2:forでcountしていくところなのか←上記の理由から1は現在微妙。
 
-print(total)
+l = list(itertools.product(range(1,k+1), repeat=3))
+print(l)
+
+# total = 0
+# for i in l:
+#     count = math.gcd(i[0], math.gcd(i[1], i[2]))
+#     total += count
+#
+# print(total)
