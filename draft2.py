@@ -7,6 +7,19 @@
 #
 # print(base64_message)
 
-import itertools
-l = itertools.combinations_with_replacement(range(3), range(3), range(3))
-print(l)
+import math
+import time
+
+start = time.time()
+
+print(math.gcd(3355, 2379))
+
+time.sleep(1)
+
+end = time.time()
+
+print('execute is ', (end - start))
+
+start2 = time.time()
+
+l = (math.gcd(1,2),3)
