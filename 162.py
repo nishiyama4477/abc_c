@@ -22,9 +22,11 @@ k = int(input())
 l = list(itertools.product(range(1,k+1), repeat=3))
 print(l)
 
-# total = 0
-# for i in l:
-#     count = math.gcd(i[0], math.gcd(i[1], i[2]))
-#     total += count
-#
-# print(total)
+total = 0
+for i in l:
+    count = math.gcd(i[0], math.gcd(i[1], i[2]))
+    total += count
+
+print(total)
+
+
