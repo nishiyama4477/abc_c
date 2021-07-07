@@ -9,4 +9,3 @@ import math
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 #
 # print(json.dumps(data))
-
