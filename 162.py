@@ -1,7 +1,4 @@
-import math
-import itertools
-
-k = int(input())
+# import itertools
 
 # ステップ1：列挙しないといけない
 # ステップ2：3ペアから2ペアに直しつつ足していく → gcd(a, gcd(b,c))
@@ -20,13 +17,25 @@ k = int(input())
 ### またこれら時間の違いを調べる為に時間を計測するプログラムが書けると便利そう、、、
 
 
-# print(l)
+# total = 0
+# for i in list(itertools.product(range(1,k+1), repeat=3)):
+#     count = math.gcd(i[0], math.gcd(i[1], i[2]))
+#     total += count
+#
+# print(total)
 
-total = 0
-for i in list(itertools.product(range(1,k+1), repeat=3)):
-    count = math.gcd(i[0], math.gcd(i[1], i[2]))
-    total += count
+import math
 
-print(total)
+K = int(input())
+
+sum = 0
+
+for i in range(1, K+1):
+    for j in range(1, K+1):
+        i_j = math.gcd(i,j)
+        for k in range(1, K+1):
+            sum += math.gcd(i_j, k)
+
+print(sum)
 
 
