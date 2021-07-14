@@ -19,11 +19,11 @@ k = int(input())
 ### つまり、①；gcd(gcd(a,b))よりも②：(gcd(a,b),c)をユークリッドの互除法を使う方が早いらしい、、、
 ### またこれら時間の違いを調べる為に時間を計測するプログラムが書けると便利そう、、、
 
-l = list(itertools.product(range(1,k+1), repeat=3))
-print(l)
+
+# print(l)
 
 total = 0
-for i in l:
+for i in list(itertools.product(range(1,k+1), repeat=3)):
     count = math.gcd(i[0], math.gcd(i[1], i[2]))
     total += count
 
