@@ -7,11 +7,22 @@
 #
 # print(base64_message)
 
-# このプログラムの上手さの一つは一見１の時の処理が抜けているように思うがsumで監理している。
-# このプログラムは3段階でsumを足している
-# またk=3の時はforを2つ通る
+N, M, Q = map(int, input().split())
+l = [list(map(int, input().split())) for l in range(Q)]
 
-n = int(input())
+import itertools
 
-for i in range(1, n):
-  base = n-1
+t = [i for i in range(1, M + 1)]
+# ここでゆうAは、問題文のAで数自体はいindex値を表している。
+A = list(itertools.combinations_with_replacement(t, N))
+print(t)
+print(l, 'と', A)
+X = []
+for j in range(len(A)): # ここでAの全パターンについて検証していく。そのために、Aのindex値としてjをとる。
+  c = 0
+  for k in range(Q):
+    if A[j][l[k][1] - 1] - A[j][l[k][0] - 1] == l[k][2]: # 　これはAのbi - Aのai = cを表している。
+      c += l[k][3]
+  X.append(c)
+print(X)
+print(max(X))
