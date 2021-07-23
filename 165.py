@@ -21,20 +21,42 @@
 
 # 犬の道をすると、difの全パターンを場合わけで作る。一応NとMの範囲は広くないので書けるが微妙。
 
+import itertools
+
 n, m, q = map(int, input().split())
 
-A = []
+# A = []
+#
+#
+# for i in range(q):
+#     req = [int(i) for i in input().split()]
+#     print(req)
+#     target = req[2]
+#     print('targetは', target)
+#     dif = m-target
+#     print('difは', dif)
+#     if dif == 1:
 
+l = [list(map(int, input().split())) for i in range(q)]
+# print("lは", l)
 
-for i in range(q):
-    req = [int(i) for i in input().split()]
-    print(req)
-    target = req[2]
-    print('targetは', target)
-    dif = m-target
-    print('difは', dif)
-    if dif == 1:
+ran = [i for i in range(1, m+1)]
+# print("ranは", ran)
 
+As = list(itertools.combinations_with_replacement(ran, n))
+
+# print(len(As))
+
+X = []
+
+for j in range(len(As)):
+    c = 0
+    for k in range(q):
+        if As[j][l[k][1] - 1] - As[j][l[k][0] - 1] == l[k][2]:
+            c += l[k][3]
+    X.append(c)
+
+print(max(X))
 
 
 
