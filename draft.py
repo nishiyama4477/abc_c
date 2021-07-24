@@ -9,16 +9,25 @@ import math
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 #
 # print(json.dumps(data))
+import itertools
+n, m, q = map(int, input().split())
 
-K = int(input())
+Qs = [list(map(int, input().split())) for i in range(q)]
 
-sum = 0
+ran = [i for i in range(1, m+1)]
 
-for i in range(1, K+1):
-    for j in range(1, K+1):
-        i_j = math.gcd(i,j)
-        for k in range(1, K+1):
-            sum += math.gcd(i_j, k)
-            sum += math.gcd(i_j, k)
+As = list(itertools.combinations_with_replacement(ran, n))
 
-print(sum)
+points = []
+
+for j in range(len(As)):
+    c = 0
+    for k in range(q):
+        if As[j][Qs[k][1] - 1] - As[j][Qs[k][0] - 1] == Qs[k][2]:
+            c += Qs[k][-1]
+    points.append(c)
+
+print(points)
+
+print(max(points))
+
