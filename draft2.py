@@ -13,12 +13,16 @@
 # print(j)
 # print(j[0])
 
-for i in range(1,4):
-    print(i, 'iだよ')
-    for j in range(1,3):
-        if j == 2:
-            break
-        else:
-            print(j)
+# aではない数（２）を取り出したい。
+a = 1
+li = [1, 2]
+b = list(filter(lambda x: x == a, li))
 
 
+print(type(li))
+print(li)
+print(b)
+
+q = []
+
+print(len(q))
