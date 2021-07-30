@@ -11,26 +11,27 @@ Hs = [int(i) for i in input().split()]
 Ms = [list(map(int, input().split())) for i in range(m)]
 
 
-print(n)
-print(m)
-print('Hs is', Hs)
-print('Ms is ', Ms)
+# print(n)
+# print(m)
+# print('Hs is', Hs)
+# print('Ms is ', Ms)
 
 counter = 0
 # Msがindex値なのでHsを取り出す時もindex値で取り出す。
 for i in range(1, len(Hs) + 1):
-    print(i, '個目', 'STARTED!!!')
+    # print(i, '個目', 'STARTED!!!')
     li = []
     for j in Ms: # Msはそのままでいい。なぜならMsはindexだから。
-        print('j is', j)
+        # print('j is', j)
         if i in j:
             # j.removeを使うと2回目の処理で使えなくなる。これが"list index out of range"の理由。
             # j.removeじゃなくてjの中のiではない方を取り出したい。そしてそれをlist.appendしたい。
-            J = list(filter(lambda x: x != i, j))
-            rival_index = J[0]
-            li.append(Hs[rival_index - 1])
-    print('li is', li)
-    if len(li) >= 1 and max(li) <= Hs[i-1] or len(li) == 0:
+            J = list(filter(lambda x: x != i, j))[0]
+            # print('ライバルは', Hs[J-1])
+            if Hs[J-1] not in li:
+                li.append(Hs[J - 1])
+    # print(Hs[i-1], 'の', 'ライバル達は is', li)
+    if len(li) >= 1 and max(li) < Hs[i-1] or len(li) == 0:
         counter += 1
 
 print(counter)
