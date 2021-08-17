@@ -4,7 +4,9 @@
 # 手順を日本語で言うと、①それぞれのobservatoryからいくつobservatoryが繋がっているか。
 # ②その中で基準となるobservatoryが一番高かったor基準となるobservatoryしかないなら＋。←これを表すには、listの中の最大値maxを使うと都合が良さそう。
 
-# 今起きているエラー(list index out of range)は、iとjでループの回数が違うからだと思う。←肌感レベルだから信憑性はない。
+# 手順を振り返ると、展望台ごとにグループを作る。　それぞれのグループの中で一番高いもしくは１つだけであれば＋１。
+
+# このプログラムは計算量がO(n*2)。これはあまり望ましくない。どう減らすか。
 
 n, m = map(int, input().split())
 Hs = [int(i) for i in input().split()]
@@ -20,6 +22,7 @@ counter = 0
 # Msがindex値なのでHsを取り出す時もindex値で取り出す。
 for i in range(1, len(Hs) + 1):
     # print(i, '個目', 'STARTED!!!')
+    # liはライバルを貯めていくところ。
     li = []
     for j in Ms: # Msはそのままでいい。なぜならMsはindexだから。
         # print('j is', j)

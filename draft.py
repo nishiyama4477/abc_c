@@ -9,25 +9,34 @@ import math
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 #
 # print(json.dumps(data))
-import itertools
-n, m, q = map(int, input().split())
 
-Qs = [list(map(int, input().split())) for i in range(q)]
+# お試しで一回ThreadPoolExecutorを使ってやってみる！！
 
-ran = [i for i in range(1, m+1)]
+from concurrent.futures import ThreadPoolExecutor
 
-As = list(itertools.combinations_with_replacement(ran, n))
+n, m = map(int, input().split())
+Hs = [int(i) for i in input().split()]
+Ms = [list(map(int, input().split())) for i in range(m)]
 
-points = []
+Ms_mid = len(Ms)//2
 
-for j in range(len(As)):
-    c = 0
-    for k in range(q):
-        if As[j][Qs[k][1] - 1] - As[j][Qs[k][0] - 1] == Qs[k][2]:
-            c += Qs[k][-1]
-    points.append(c)
+Ms_1half = Ms[:Ms_mid]
+Ms_2half = Ms[Ms_mid + 1:]
 
-print(points)
+print(Ms_1half)
+print(Ms_2half)
 
-print(max(points))
+for p in range(1, len(Hs) // 2 + 1):
+    print('①Hs is', Hs[p-1])
+    # for s in Ms
+
+for q in range(len(Hs)//2 + 1, len(Hs) + 1):
+    print('Hs is', Hs[q-1])
+
+
+
+# with ThreadPoolExecutor(max_workers=2) as executor:
+#     a = executor.submit(wait_on_b)
+#     b = executor.submit(wait_on_a)
+
 
