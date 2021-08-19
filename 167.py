@@ -46,12 +46,46 @@ print('level_counter is', level_counter)
 
 if min(level_counter) < x:
     print(-1)
+    exit()
 else:
-    marks = [A, B, C, D, E, F, G, H, I, J, K, L] # zip時の割り当てに使う。
+    # marks = [A, B, C, D, E, F, G, H, I, J, K, L] # zip時の割り当てに使う。
     for i in range(1, n+1):
         print('started')
         for j in list(combinations(sorted_Ns, i)): # jは組み合わせ ここでjの時Xを満たせるか判定したい。J is like ([60, 2, 2, 4], [70, 8, 7, 9])
-            print('j is', j)
+            if len(j) == 1:
+                a = j[0]
+                if min(a[1:]) < x:
+                    continue
+                else:
+                    print(a[0][0])
+                    quit()
+            elif len(j) == 2:
+                a = j[0]
+                b = j[1]
+
+                c = [n + o for n, o in zip(a, b)]
+                if min(c[1:]) < x:
+                    continue
+                else:
+                    print(c[0])
+                    quit()
+
+            elif len(j) == 3:
+                a = j[0]
+                b = j[1]
+                c = j[2]
+
+                d = [n + o + p for n, o, p in zip(a, b, c)]
+                if min(d[1:]) < x:
+                    continue
+                else:
+                    print(d[0])
+                    quit()
+
+            # elif len(j)
+
+print(-1)
+
 
     # ここで1つ、2つ.....と取り出せる。
 
