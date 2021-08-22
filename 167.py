@@ -13,7 +13,7 @@ level_counter = []
 for i in range(m):
     level_counter.append(0)
 
-print(level_counter)
+# print(level_counter)
 #####
 
 Ns = [list(map(int, input().split())) for i in range(n)]
@@ -23,15 +23,15 @@ Ns = [list(map(int, input().split())) for i in range(n)]
 # それを繰り返していけばそれぞれのアルゴリズムに置いてXを超えそうか判定できる。
 # ここでforループを使うと量が膨大になりそうだが、1 <= n, m <= 12 なので大丈夫そう。
 
-print('n=', n)
-print('m=', m)
-print('x=', x)
-
-print(Ns)
+# print('n=', n)
+# print('m=', m)
+# print('x=', x)
+#
+# print(Ns)
 
 sorted_Ns = sorted(Ns)
 
-print(sorted_Ns)
+# print(sorted_Ns)
 
 
 for i in Ns:
@@ -42,7 +42,7 @@ for i in Ns:
             level_counter[j-1] += item
 
 
-print('level_counter is', level_counter)
+# print('level_counter is', level_counter)
 
 if min(level_counter) < x:
     print(-1)
@@ -50,12 +50,14 @@ if min(level_counter) < x:
 else:
     # marks = [A, B, C, D, E, F, G, H, I, J, K, L] # zip時の割り当てに使う。
     for i in range(1, n+1):
-        print('started')
+        # print('started')
         for j in list(combinations(sorted_Ns, i)): # jは組み合わせ ここでjの時Xを満たせるか判定したい。J is like ([60, 2, 2, 4], [70, 8, 7, 9])
             if len(j) == 1:
                 a = j[0]
+                # 満たさなかった側
                 if min(a[1:]) < x:
                     continue
+                # 条件を満たした側
                 else:
                     print(a[0][0])
                     quit()
@@ -82,7 +84,167 @@ else:
                     print(d[0])
                     quit()
 
-            # elif len(j)
+            elif len(j) == 4:
+                a = j[0]
+                b = j[1]
+                c = j[2]
+                d = j[3]
+
+                e = [n + o + p + q for n, o, p, q in zip(a, b, c, d)]
+                if min(e[1:]) < x:
+                    continue
+                else:
+                    print(e[0])
+                    quit()
+
+            elif len(j) == 5:
+                a = j[0]
+                b = j[1]
+                c = j[2]
+                d = j[3]
+                e = j[4]
+
+                f = [n + o + p + q + r for n, o, p, q, r in zip(a, b, c, d, e)]
+                if min(f[1:]) < x:
+                    continue
+                else:
+                    print(f[0])
+                    quit()
+
+            elif len(j) == 6:
+                a = j[0]
+                b = j[1]
+                c = j[2]
+                d = j[3]
+                e = j[4]
+                f = j[5]
+
+                g = [n + o + p + q + r + s for n, o, p, q, r, s in zip(a, b, c, d, e, f)]
+                if min(g[1:]) < x:
+                    continue
+                else:
+                    print(g[0])
+                    quit()
+
+            elif len(j) == 7:
+                a = j[0]
+                b = j[1]
+                c = j[2]
+                d = j[3]
+                e = j[4]
+                f = j[5]
+                g = j[6]
+
+                h = [n + o + p + q + r + s + t for n, o, p, q, r, s, t in zip(a, b, c, d, e, f, g)]
+                if min(h[1:]) < x:
+                    continue
+                else:
+                    print(h[0])
+                    quit()
+
+
+            elif len(j) == 8:
+                a = j[0]
+                b = j[1]
+                c = j[2]
+                d = j[3]
+                e = j[4]
+                f = j[5]
+                g = j[6]
+                h = j[7]
+
+
+                i = [n + o + p + q + r + s + t + u for n, o, p, q, r, s, t, u in zip(a, b, c, d, e, f, g, h)]
+                if min(i[1:]) < x:
+                    continue
+                else:
+                    print(i[0])
+                    quit()
+
+
+            elif len(j) == 9:
+                a = j[0]
+                b = j[1]
+                c = j[2]
+                d = j[3]
+                e = j[4]
+                f = j[5]
+                g = j[6]
+                h = j[7]
+                i = j[8]
+
+                js = [n + o + p + q + r + s + t + u + v for n, o, p, q, r, s, t, u, v in zip(a, b, c, d, e, f, g, h, i)]
+                if min(js[1:]) < x:
+                    continue
+                else:
+                    print(js[0])
+                    quit()
+
+
+            elif len(j) == 10:
+                a = j[0]
+                b = j[1]
+                c = j[2]
+                d = j[3]
+                e = j[4]
+                f = j[5]
+                g = j[6]
+                h = j[7]
+                i = j[8]
+                js = j[9]
+
+                k = [n + o + p + q + r + s + t + u + v + w for n, o, p, q, r,s ,t, u, v, w in zip(a, b, c, d, e, f, g, h, i, js)]
+                if min(k[1:]) < x:
+                    continue
+                else:
+                    print(k[0])
+                    quit()
+
+
+
+            elif len(j) == 11:
+                a = j[0]
+                b = j[1]
+                c = j[2]
+                d = j[3]
+                e = j[4]
+                f = j[5]
+                g = j[6]
+                h = j[7]
+                i = j[8]
+                js = j[9]
+                k = j[10]
+
+                l = [n + o + p + q + r + s + t + u + v + w + x for n, o, p, q, r, s, t, u, v, w, x in zip(a, b, c, d, e, f, g, h, i, js, k)]
+                if min(l[1:]) < x:
+                    continue
+                else:
+                    print(l[0])
+                    quit()
+
+
+            elif len(j) == 12:
+                a = j[0]
+                b = j[1]
+                c = j[2]
+                d = j[3]
+                e = j[4]
+                f = j[5]
+                g = j[6]
+                h = j[7]
+                i = j[8]
+                js = j[9]
+                k = j[10]
+                l = j[11]
+
+                m = [n + o + p + q + r + s + t + u + v + w + x + y for n, o, p, q, r, s, t, u, v, w, x, y in zip(a, b, c, d, e, f, g, h, i, js, k, l)]
+                if min(m[1:]) < x:
+                    continue
+                else:
+                    print(m[0])
+                    quit()
+
+
 
 print(-1)
 
