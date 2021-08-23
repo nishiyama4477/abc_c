@@ -59,7 +59,7 @@ else:
                     continue
                 # 条件を満たした側
                 else:
-                    print(a[0][0])
+                    print(a[0])
                     quit()
             elif len(j) == 2:
                 a = j[0]
