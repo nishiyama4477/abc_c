@@ -9,7 +9,7 @@ print("a is", a)
 for i in range(n):
     c[i] = A[i][0]
 
-#
+#　ここでそれぞれの習熟度をlistとして出す
 for i in range(n):
     for j in range(m):
         print('a[i][j] is', a[i][j])
@@ -17,23 +17,46 @@ for i in range(n):
         a[i][j] = A[i][j + 1]
 
 print('for後のaは', a)
+print('ちなみにcは', c)
+# ここまでにある材料はそれぞれの経験値のリスト(a = [2, 2, 4], [8, 7, 9], [2, 3, 9]])とn, m, xとc(c = [価格のリスト])
+
+# とりまひと段落
+
+print('--------------')
+print('--------------')
+
+# ここのinfは「圧倒的に小さい値」「圧倒的に大きい値」を意味し、comparisonに使われる。ここでは＋のinfなので「圧倒的に大きい値」を意味し、
+# valuesの中で一番小さい値を見つけるために使われていると推測する。
 inf = float('inf')
+# ここのansは最小になってほしい値。
 ans = inf
 
-for i in range(2 ** n):
+
+# n, m, x, a（経験値集めたやつ）, c（価格集めたやつ）が使われる。ここでaとcは下の作業で値を輸入するために使われる、輸入元みたいなイメージ
+print('2 ** n is', 2 ** n)
+for i in range(2 ** n): # ?????なぜ2乗なのか分からない。自分の仮説はiを使いたかったから。
+    print('START！')
+    print('i is', i)
     price = 0
-    comprehension = [0] * m
+    comprehension = [0] * m # comprehensionは経験値分のリスト
+    print('comprehension is', comprehension)
     for j in range(n):
-        if (i >> j) & 1:
+        print('j is', j)
+        if (i >> j) & 1: # ??????この条件文も分からない。
+            print('条件に当てはまったよ！この時iとjは', i, 'と', j)
             price += c[j]
             flag = True
+            # ↓このループは経験値を足していくループ
             for k in range(m):
-                comprehension[k] += a[j][k]
+                comprehension[k] += a[j][k] # j個目の本のk個目の経験値i
                 if comprehension[k] < x:
                     flag = False
+            # 経験値を足し終わった後にflag=True（つまり基準を満たせばansに値が入る。）
             if flag:
                 ans = min(ans, price)
 
+# 値が見つからなかったケース,
+# ansは無限大の＋なのでpriceに値が入った時点でansはpriceになるはず。
 if ans == inf:
     print(-1)
 else:
