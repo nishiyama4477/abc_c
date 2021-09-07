@@ -34,16 +34,21 @@ ans = inf
 
 # n, m, x, a（経験値集めたやつ）, c（価格集めたやつ）が使われる。ここでaとcは下の作業で値を輸入するために使われる、輸入元みたいなイメージ
 print('2 ** n is', 2 ** n)
-for i in range(2 ** n): # ?????なぜ2乗なのか分からない。自分の仮説はiを使いたかったから。
+
+counter = 0
+flag_false = 0
+
+for i in range(2 ** n): # ?????なぜ2乗なのか分からない。自分の仮説はiを使いたかったから。→答えは「ある集合Aの要素がnの時、集合Aの部分集合はnの２乗になる」から
     print('START！')
     print('i is', i)
     price = 0
     comprehension = [0] * m # comprehensionは経験値分のリスト
     print('comprehension is', comprehension)
     for j in range(n):
-        print('j is', j)
-        if (i >> j) & 1: # ??????この条件文も分からない。
+        print('j is',  bin(j))
+        if (i >> j) & 1: # ??????この条件文も分からない。→　これはフラグチェックをしているだけ。ぶどう•みかん•りんごの例を見たら分かるが、もしjシフトした時それが１であればその果物(ぶどうかみかんかりんご）は存在することになる。
             print('条件に当てはまったよ！この時iとjは', i, 'と', j)
+            counter += 1
             price += c[j]
             flag = True
             # ↓このループは経験値を足していくループ
@@ -51,10 +56,14 @@ for i in range(2 ** n): # ?????なぜ2乗なのか分からない。自分の仮
                 comprehension[k] += a[j][k] # j個目の本のk個目の経験値i
                 if comprehension[k] < x:
                     flag = False
-            # 経験値を足し終わった後にflag=True（つまり基準を満たせばansに値が入る。）
+            # 経験値を足し終わった後にflag=True（つまり基準を満たせばansに値が入る。）ここで前回入ってきたpriceとの比較を行い、値の小さな方が採用される。
             if flag:
                 ans = min(ans, price)
+            else:
+                flag_false += 1
 
+print('counter is', counter)
+print('flag_false is', flag_false)
 # 値が見つからなかったケース,
 # ansは無限大の＋なのでpriceに値が入った時点でansはpriceになるはず。
 if ans == inf:
