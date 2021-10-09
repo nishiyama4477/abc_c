@@ -1,5 +1,4 @@
-import math
-
+import itertools
 # import json
 # import base64
 #
@@ -7,27 +6,33 @@ import math
 # with open('https://machinelearningmastery.com/wp-content/uploads/2019/02/sample_image.png', mode='rb') as file:
 #     img = file.read()
 # data['img'] = base64.encodebytes(img).decode('utf-8')
-#
-# print(json.dumps(data))
 
-# お試しで一回ThreadPoolExecutorを使ってやってみる！！
+n = int(input())
 
-from concurrent.futures import ThreadPoolExecutor
+def prime_factorizer(num):
+    li = []
+    while num % 2 == 0:
+        li.append(2)
+        num //= 2
+    base = 3
+    while base * base <= num:
+        if num % base == 0:
+            li.append(base)
+            num //= base
+        else:
+            base += 2
 
-# list = [4,10,1]
-# def bit_plus(list):
-#   sum = 0
-#   for bit in range(1<<len(list)): # 0(0b000)から7(0b111)まで
-#     for i in range(len(list)):
-#       mask = 1 << i
-#       print('mask is', mask)
-#       print('bit is', bin(bit))
-#       if bit&mask: # 右からi番目にビットが立っているかどうか判定
-#         sum += list[i]
-#   return sum
-# print(bit_plus(list))
+    if num != 1:
+        li.append(num)
+    return li
 
-for i in range(7, 16):
-  print(i, 'の binは', bin(i))
+print(prime_factorizer(n))
 
+# 素因数分解された後のlistの過半数の組み合わせを取り出し、その組み合わせを掛け合わしたもの
+# で一番数が小さくなるやつがx軸（もしくはy軸）になる.
+# 例えば112は[2,2,2,2,7]なので片方は3つ。3つの組み合わせの中で一番小さくなるのは222=8なので
+# 答えは8, 14(2*7）になる、、、、はず、、、
+combinations = itertools.combinations(prime_factorizer(n), -(-len(prime_factorizer(n)) // 2))
 
+for i in combinations:
+    selected =
