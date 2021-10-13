@@ -7,7 +7,7 @@
 #     img = file.read()
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 
-import itertools
+
 from operator import mul
 from functools import reduce
 
@@ -31,38 +31,30 @@ def prime_factorizer(num):
     return li
 
 p = prime_factorizer(n)
-# print(p)
+# print('pは', p)
 
-# 素因数分解された後のlistの過半数の組み合わせを取り出し、その組み合わせを掛け合わしたもの
-# で一番数が小さくなるやつがx軸（もしくはy軸）になる.
-# 例えば112は[2,2,2,2,7]なので片方は3つ。3つの組み合わせの中で一番小さくなるのは222=8なので
-# 答えは8, 14(2*7）になる、、、、はず、、、
-combinations = list(itertools.combinations(prime_factorizer(n), -(-len(prime_factorizer(n)) // 2)))
+base = float('inf')
 
-# print('過半数は', -(-len(prime_factorizer(n)) // 2))
+for i, value in enumerate(p):
+    if i == len(p) - 1:
+        break
+    left = p[:i+1]
+    right = p[i+1:]
+    # print('left is', left)
+    # print('right is', right)
+    l_num = reduce(mul, left)
+    r_num = reduce(mul, right)
+    # print('l_num is', l_num)
+    # print('r_num is', r_num)
+    dis = l_num + r_num
+    if dis <= base:
+        base = dis
 
-# leastは掛け合わせた時の最小の組み合わせ。掛け算はする前で[2,2,3]みたいな状態。
-least = combinations[0]
-
-# print('combinationsは,', combinations)
-# print('最初のcombinationsは', least)
-
-for i in combinations:
-    selected = reduce(mul, i)
-    if selected < reduce(mul, least):
-        # print('更新されたお')
-        least = i
-
-# print('leastは', least)
-
-for i in least:
-    p.remove(i)
-
-# print('removeされたpは', p)
 
 # ここでエラー。このpが空っぽなので。つまり、素因数分解した時に要素が一つしかないパターン。
-if not p:
+if len(p) == 1:
     print(n - 1)
 else:
-    print(reduce(mul, least) + reduce(mul, p) - 2)
+    print(base - 2)
+
 
