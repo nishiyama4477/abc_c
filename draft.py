@@ -35,6 +35,7 @@ p = prime_factorizer(n)
 
 base = float('inf')
 
+#pを左からスライスする方式に変えた
 for i, value in enumerate(p):
     if i == len(p) - 1:
         break
