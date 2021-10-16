@@ -32,49 +32,38 @@ def prime_factorizer(num):
     return li
 
 p = prime_factorizer(n)
-print('pは', p)
 
-base = float('inf')
-
-#pを左からスライスする方式に変えた
-for i, value in enumerate(p):
-    if i == len(p) - 1:
-        break
-    left = p[:i+1]
-    right = p[i+1:]
-    # print('left is', left)
-    # print('right is', right)
-    l_num = reduce(mul, left)
-    r_num = reduce(mul, right)
-    # print('l_num is', l_num)
-    # print('r_num is', r_num)
-    dis = l_num + r_num
-    if dis <= base:
-        base = dis
-
-print('base is', base)
-
-# ここでエラー。このpが空っぽなので。つまり、素因数分解した時に要素が一つしかないパターン。
-if len(p) == 1:
-    print(n - 1)
-else:
-    print(base - 2)
 
 length = len(p)
 
-for ind, i in enumerate(p):
-    if len(p) != length:
-        p.append(p[ind-1])
-    print('軸は', i)
-    p.remove(i)
+# ans = float('inf')
+if len(p) == 1:
+    print(n - 1)
+else:
+    ans = p[0] + reduce(mul, p[1:])
 
-    for j in range(1, len(p)):
-        rival_num = len(p) - j
-        print('相手の数は', rival_num)
-        combinations = itertools.combinations(p, rival_num)
-        print('その選び方は', list(combinations))
-        print('その選び方は', [reduce(mul, i) for i in combinations])# 上のコードをコメントアウトしないと正しいアウトプットにならない。
 
+    for ind, i in enumerate(p):
+        if len(p) != length:
+            p.append(p[ind-1])
+        # print('軸は', i)
+        p.remove(i)
+
+        for j in range(1, len(p)):
+            rival_num = len(p) - j
+            # print('相手の数は', rival_num)
+            combinations = itertools.combinations(p, rival_num)
+            # print('その選び方は', list(combinations))
+            rival_li = [reduce(mul, i) for i in combinations]
+            # print('敵は', rival_li )# 上のコードをコメントアウトしないと正しいアウトプットにならない。
+            my_li = [n // i for i in rival_li]
+            # print('味方は', my_li)
+            move = [x + y for x, y in zip(rival_li, my_li)]
+            maybe_ans = min(move)
+            if maybe_ans <= ans:
+                ans = maybe_ans
+
+    print(ans-2)
 
 # 1748670
 
