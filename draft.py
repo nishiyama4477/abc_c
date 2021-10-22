@@ -6,65 +6,67 @@
 # with open('https://machinelearningmastery.com/wp-content/uploads/2019/02/sample_image.png', mode='rb') as file:
 #     img = file.read()
 # data['img'] = base64.encodebytes(img).decode('utf-8')
-
-
-from operator import mul
-from functools import reduce
+import math
 import itertools
 
 n = int(input())
 
-def prime_factorizer(num):
-    li = []
-    while num % 2 == 0:
-        li.append(2)
-        num //= 2
-    base = 3
-    while base * base <= num:
-        if num % base == 0:
-            li.append(base)
-            num //= base
+li = [input().split() for i in range(n)]
+
+fac = list(itertools.permutations(li))
+
+print('それぞれの点は', li)
+
+# print('組み合わせは', fac)
+
+print('組み合わせのサンプルは', fac[0])
+
+
+total = 0
+
+for j in fac:
+# ひとつのパターンを使ったパターン
+    sample_sum = 0
+    for i, val in enumerate(j):
+        if i == len(j)- 1:
+            break
         else:
-            base += 2
+            val = list(int(i) for i in val)
+            val2 = list(int(i) for i in j[i + 1])
+            print(val)
+            print(val2)
 
-    if num != 1:
-        li.append(num)
-    return li
-
-p = prime_factorizer(n)
-
-
-length = len(p)
-
-# ans = float('inf')
-if len(p) == 1:
-    print(n - 1)
-else:
-    ans = p[0] + reduce(mul, p[1:])
+            zipped = zip(val, val2)
+            s = [x+y for x, y in zipped]
+            print('sum は', s)
+            ans = math.sqrt(sum([i**2 for i in s]))
+            print('ans　は', ans)
+            sample_sum += ans
+    total += sample_sum
 
 
-    for ind, i in enumerate(p):
-        if len(p) != length:
-            p.append(p[ind-1])
-        # print('軸は', i)
-        p.remove(i)
-
-        for j in range(1, len(p)):
-            rival_num = len(p) - j
-            # print('相手の数は', rival_num)
-            combinations = itertools.combinations(p, rival_num)
-            # print('その選び方は', list(combinations))
-            rival_li = [reduce(mul, i) for i in combinations]
-            # print('敵は', rival_li )# 上のコードをコメントアウトしないと正しいアウトプットにならない。
-            my_li = [n // i for i in rival_li]
-            # print('味方は', my_li)
-            move = [x + y for x, y in zip(rival_li, my_li)]
-            maybe_ans = min(move)
-            if maybe_ans <= ans:
-                ans = maybe_ans
-
-    print(ans-2)
-
-# 1748670
+print(total / len(fac))
 
 
+
+
+
+
+# # ひとつのパターンを使ったパターン
+# sample_sum = 0
+# for i, val in enumerate(fac[0]):
+#     if i == len(fac[0])- 1:
+#         break
+#     else:
+#         val = list(int(i) for i in val)
+#         val2 = list(int(i) for i in fac[0][i + 1])
+#         print(val)
+#         print(val2)
+#
+#         zipped = zip(val, val2)
+#         s = [x+y for x, y in zipped]
+#         print('sum は', s)
+#         ans = math.sqrt(sum([i**2 for i in s]))
+#         print('ans　は', ans)
+#         sample_sum += ans
+# print(sample_sum)

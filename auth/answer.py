@@ -1,12 +1,33 @@
-import math
+import itertools
 
-N = int(input())
+li = [1,2,3,4]
 
-ans = 10 ** 12
+print(list(itertools.permutations(li)))
 
-for i in range(1, int(math.sqrt(N)) + 1):
-    l = N / i
-    if N % i == 0:
-        ans = min(ans, i + l)
 
-print(int(ans - 2))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
