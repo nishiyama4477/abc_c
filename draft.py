@@ -15,11 +15,11 @@ li = [input().split() for i in range(n)]
 
 fac = list(itertools.permutations(li))
 
-print('それぞれの点は', li)
+# print('それぞれの点は', li)
 
-# print('組み合わせは', fac)
+# print('道順の組み合わせは', fac)
 
-print('組み合わせのサンプルは', fac[0])
+# print('組み合わせのサンプルは', fac[0])
 
 
 total = 0
@@ -28,19 +28,19 @@ for j in fac:
 # ひとつのパターンを使ったパターン
     sample_sum = 0
     for i, val in enumerate(j):
-        if i == len(j)- 1:
+        if i == len(j) - 1:
             break
         else:
             val = list(int(i) for i in val)
             val2 = list(int(i) for i in j[i + 1])
-            print(val)
-            print(val2)
+            # print('地点Aは', val)
+            # print('地点Bは', val2)
 
             zipped = zip(val, val2)
-            s = [x+y for x, y in zipped]
-            print('sum は', s)
+            s = [x-y for x, y in zipped]
+            # print('sum は', s)
             ans = math.sqrt(sum([i**2 for i in s]))
-            print('ans　は', ans)
+            # print('ans　は', ans)
             sample_sum += ans
     total += sample_sum
 
