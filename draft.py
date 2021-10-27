@@ -14,10 +14,20 @@
 # まず、インパクトが大きいのはAの値。例えば、n = 100 のとき、1 * 100 > 1 * 3になる。
 # てことは、A * ○ の値が許容範囲を超えないかでifを組める説。
 
+###二分探索だった！！！！
+# まずは昇順に並べてリストを用意
+
+
 a, b, x = map(int, input().split())
 
-#Nは１以上なのでa+bがxよりも大きい時点でたとえ最小のInteger１が入ってきても買えない。
-if a + b > x:
-    print(0)
-    exit()
-else:
+# #Nは１以上なのでa+bがxよりも大きい時点でたとえ最小のInteger１が入ってきても買えない。
+# if a + b > x:
+#     print(0)
+#     exit()
+# else:
+
+left = 0
+right = 10**9
+while left <= right:
+    mid = (left + right) // 2
+
