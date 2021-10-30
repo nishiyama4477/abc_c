@@ -26,8 +26,39 @@ a, b, x = map(int, input().split())
 #     exit()
 # else:
 
-left = 0
+left = 1
 right = 10**9
-while left <= right:
-    mid = (left + right) // 2
 
+left_p = a * left + b * len(str(left))
+right_p = a * right + b * len(str(right))
+
+
+while left <= right:
+    # left_pをそのままleftにしてしまえばいいやないか？という疑問もあるが、それは下記↓をするから出来ない。
+    # print('start------------------')
+    # print('-----------------------')
+    # print('left is', left)
+    # print('right is', right)
+
+    mid = (left + right) // 2
+    # print('mid is', mid)
+
+    mid_p = a * mid + b * len(str(mid))
+    # mid_pの次の値（next)と言う意味でn_mid_p
+    n_mid_p = a * (mid + 1) + b * len(str(mid + 1))
+    if mid_p == x:
+        print(mid)
+        exit()
+    elif mid_p < x and n_mid_p > x:
+        print(mid)
+        exit()
+    elif right - left <= 1:
+        if a * right + b * len(str(right)) <= x:
+            print(right)
+        else:
+            print(0)
+        exit()
+    elif mid_p < x:
+        left = mid + 1
+    elif mid_p > x:
+        right = mid - 1
