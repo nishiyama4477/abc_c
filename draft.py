@@ -7,58 +7,25 @@
 #     img = file.read()
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 
-
-
-
 # 方針１
-# まず、インパクトが大きいのはAの値。例えば、n = 100 のとき、1 * 100 > 1 * 3になる。
-# てことは、A * ○ の値が許容範囲を超えないかでifを組める説。
+# まず人数から正直者である人の取り出し方を列挙。それに応じて数が多い順に、本当に正直者かを判定し、全て通ればそれが最大値。最後まで通らなければ0を出力。
+import itertools
 
-###二分探索だった！！！！
-# まずは昇順に並べてリストを用意
+n = int(input())
 
+h_or_un = []
+for i in range(n):
+    a = int(input())
+    print('A is', a)
+    x_y = []
+    for j in range(a):
+        x, y = map(int, input().split())
+        x_y.append([x,y])
+        print('x and y are', x, y)
+    h_or_un.append(x_y)
 
-a, b, x = map(int, input().split())
+print(h_or_un)
 
-# #Nは１以上なのでa+bがxよりも大きい時点でたとえ最小のInteger１が入ってきても買えない。
-# if a + b > x:
-#     print(0)
-#     exit()
-# else:
-
-left = 1
-right = 10**9
-
-left_p = a * left + b * len(str(left))
-right_p = a * right + b * len(str(right))
-
-
-while left <= right:
-    # left_pをそのままleftにしてしまえばいいやないか？という疑問もあるが、それは下記↓をするから出来ない。
-    # print('start------------------')
-    # print('-----------------------')
-    # print('left is', left)
-    # print('right is', right)
-
-    mid = (left + right) // 2
-    # print('mid is', mid)
-
-    mid_p = a * mid + b * len(str(mid))
-    # mid_pの次の値（next)と言う意味でn_mid_p
-    n_mid_p = a * (mid + 1) + b * len(str(mid + 1))
-    if mid_p == x:
-        print(mid)
-        exit()
-    elif mid_p < x and n_mid_p > x:
-        print(mid)
-        exit()
-    elif right - left <= 1:
-        if a * right + b * len(str(right)) <= x:
-            print(right)
-        else:
-            print(0)
-        exit()
-    elif mid_p < x:
-        left = mid + 1
-    elif mid_p > x:
-        right = mid - 1
+for i in range(1, n+1):
+    li = itertools.combinations(h_or_un, i)
+    print('list is', list(li))
