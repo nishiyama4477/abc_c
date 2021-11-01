@@ -8,24 +8,34 @@
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 
 # 方針１
-# まず人数から正直者である人の取り出し方を列挙。それに応じて数が多い順に、本当に正直者かを判定し、全て通ればそれが最大値。最後まで通らなければ0を出力。
+# N人の取り出し方それぞれに対して検証する。大きい数からやっていけば検証が通った途端にそれが答えとなる。
 import itertools
 
 n = int(input())
 
-h_or_un = []
+testimonies = []
+
 for i in range(n):
     a = int(input())
     print('A is', a)
     x_y = []
     for j in range(a):
         x, y = map(int, input().split())
-        x_y.append([x,y])
-        print('x and y are', x, y)
-    h_or_un.append(x_y)
+        x_y.append(x)
+        x_y.append(y)
+        print('証言', j+1,  'は', x, y)
+    testimonies.append(x_y)
 
-print(h_or_un)
+print('testimonies is', testimonies)
 
 for i in range(1, n+1):
-    li = itertools.combinations(h_or_un, i)
-    print('list is', list(li))
+    li = itertools.combinations(testimonies, i)
+
+    comb = list(li)
+    print(comb)
+    print('取り出し方の種類は', len(comb))
+    print(comb[0])
+    for j in comb:
+        count = [0] * n
+        count[]
+
