@@ -30,7 +30,6 @@ print('testimonies is', testimonies)
 
 
 
-
 # 一旦保留↓ とりまbit全探索でやってみる
 #
 #
@@ -61,16 +60,33 @@ print('testimonies is', testimonies)
 #             bag.append(item[j][0])
 #     print(bag)
 
+count = 0
 
 for i in range(2**n):
     peo = []
     for j in range(n):
         if (i >> j) & 1:
             peo.append(testimonies[j])
+    # ここでパターンの取得は終わっているのでそれぞれが合っているか確認。
+    # フラグとしては正直者と言われている人の発言に矛盾が生じたらアウト。矛盾とは同じ人に1と0宣言されること。
     print('パターン', i, 'は', peo)
+    flag = [0] * n
+    for k in peo:
+        print('k is', k[0])
+        if k[0][1] == 1 and k[0][1] >= 0:
+            flag[k[0][0]] += 10
+        elif k[0][1] == 0 and k[0][1] <= 0:
+            flag[k[0][0]] -= 10
+        # 矛盾が発生した時（上記のifでもelifでもない時）、もしくはパターンとして正直者が1人もいない（peoの要素が0の時。
+        # これはもう少し上で場合分けしたが良さそう）の場合分けが出来ていない。
+        else:
+            print('NOOO')
+            break
+
+    print('flag', flag)
 
 
-
+print(count)
 
 
 
