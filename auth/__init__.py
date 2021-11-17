@@ -1,3 +1,0 @@
-from . import sample
-
-sample 

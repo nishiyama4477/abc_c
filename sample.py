@@ -1,45 +1,16 @@
-# 1問目
-base = [1,0,5]
-for i in range(1, 31):
-    if i < 4:
-        pass
-    else:
-        ans = sum(base[i - 4:])
-        base.append(ans)
-
-print(base[-1])
-
-
-# 2問目
-def cal(n):
-    list = []
-    i = 1
-    while i*i <= n:
-        if n % i == 0 and i <= 5000000:
-            list.append(i)
-            if i != n // i and i <= 5000000:
-                list.append(n//i)
-        i += 1
-    return sum(list)
-
-print(cal(1234567890))
-
-# print(sum(cal(1234567890)))
-
-# 3問目
-
-# 4問目
-import math
-
-count = 0
-
-a = 1
-while a <= 100:
-    b = a
-    while b <= 10000/ a:
-        if math.sqrt(a*a + b*b).is_integer():
-            count += 1
-    b += 1
-a += 1
-
-print(count)
+# n = int(input())
+#
+# testimonies = []
+#
+# for i in range(n):
+#     a = int(input())
+#     # print('A is', a)
+#     x_y = []
+#     for j in range(a):
+#         x, y = map(int, input().split())
+#         pare = [x, y]
+#         x_y.append(pare)
+#         # print('証言', j+1,  'は', x, y)
+#     testimonies.append(x_y)
+#
+# print(testimonies)
