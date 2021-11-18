@@ -90,11 +90,12 @@ for i in range(n):
     testimonies.append(x_y)
 
 print('testimonies is', testimonies)
-print(len(testimonies))
+# print(len(testimonies))
 
-count = -float('inf')
+
 
 for i in range(2**n):
+    #peoはパターンを表す。
     peo = []
     for j in range(n):
         if (i >> j) & 1:
@@ -103,37 +104,9 @@ for i in range(2**n):
     # フラグとしては正直者と言われている人の発言に矛盾が生じたらアウト。矛盾とは同じ人に1と0宣言されること。
     print('--------------------')
     print('パターン', i, 'は', peo)
-    flag = [0] * n
-    print('flag is', flag)
-    print('正直者の数は', len(peo))
-    for k in peo:
-        print('k is', k[0])
-        # 前　嘘つき　今　正直者
-        if k[0][1] == 1 and flag[k[0][0]] < 0:
-            print('course: 1')
-            flag[k[0][0]] = 'w'
-        # 前　正直　今　嘘つき
-        elif k[0][1] == 0 and flag[k[0][0]] > 0:
-            print('course: 2')
-            flag[k[0][0]] = 'w'
-        # 正直者かつflagがwではない
-        elif k[0][1] == 1 and k[0][1] >= 0 and flag[k[0][0]] is not type(str):
-            print('course: 3')
-            flag[k[0][0]] += 10
-        # 嘘つきかつflagがwではない
-        elif k[0][1] == 0 and k[0][1] <= 0 and flag[k[0][0]] is not type(str):
-            print('course: 4')
-            flag[k[0][0]] -= 10
-        # 矛盾が発生した時（上記のifでもelifでもない時）、もしくはパターンとして正直者が1人もいない（peoの要素が0の時。
-        # これはもう少し上で場合分けしたが良さそう）の場合分けが出来ていない。
-
-    print('flag', flag)
-    if 'w' not in flag:
-        if len(peo) > count:
-            count = len(peo)
+    print('要素の数は', len(peo))
 
 
-print(count)
 
 
 
