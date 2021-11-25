@@ -11,12 +11,16 @@ for i in range(N):
     xy = [list(map(int, input().split())) for _ in range(A)]
     xy_list.append(xy)
 
-# 1<<Nと2**Nは一緒。
+print(xy_list)
+print(xy_list[0])
+# 1<<Nと2**Nは一緒。つまりstはパターンを表す。
 for st in range(1 << N):
+    # witness は 人を表す。test は 証言。
     for witness, test in enumerate(xy_list):
+        # ここはただのパターンの抽出。←違う説。
         if not st >> witness & 1:
             continue
-
+        # それぞれのパターンに対してその証言が正しいか調べる
         for person, testimony in test:
             # 0-index
             person -= 1
