@@ -34,9 +34,9 @@ a, b = map(int, input().split())
 A_primes = prime_fact(a)
 B_primes = prime_fact(b)
 
-# print('A_primes is', A_primes)
-# print('B_primes is', B_primes)
-#
+print('A_primes is', A_primes)
+print('B_primes is', B_primes)
+
 # print(prime_fact(18696))
 
 uncommon = set(A_primes) ^ set(B_primes)
@@ -46,7 +46,10 @@ for i in A_primes:
         B_primes.append(i)
 
 
-# print(B_primes)
+print(B_primes)
 
 print(reduce(mul, B_primes))
+
+
+
 
