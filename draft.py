@@ -7,28 +7,29 @@
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 
 
-# ABC149
+# ABC150
+import itertools
 
-x = int(input())
+n = int(input())
 
+lia = list(map(int, input().split()))
 
-def is_prime(n):
-    flag = True
-    if n > 1:
-        for i in range(2, n):
-            if x % i == 0:
-                flag = False
-                break
-    if flag:
-        return False
-    else:
-        return True
+lib = list(map(int, input().split()))
 
 
-for i in range(x, 10**5+1):
-    print(i)
-    if is_prime(i):
-        print(i)
-        quit()
+li = [i for i in range(1, n+1)]
 
+a = 0
+b = 0
 
+permutations = list(itertools.permutations(li, n))
+# print('permutationsは', permutations)
+for i, v in enumerate(permutations):
+    if v == tuple(lia):
+        # print('発見！')
+        a = i+1
+    if v == tuple(lib):
+        # print('発見！')
+        b = i+1
+
+print(abs(a-b))
