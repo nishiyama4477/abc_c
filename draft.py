@@ -7,29 +7,36 @@
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 
 
-# ABC150
-import itertools
+# ABC151
+# いちよ方針。まずsolvedな問題を分ける。それからq(question)を軸にpenaltiesを足していく。qが変わればpenaltiesをリセット。
 
-n = int(input())
+n, m = map(int, input().split())
+ans = [list(input().split()) for i in range(m)]
 
-lia = list(map(int, input().split()))
+print(ans)
 
-lib = list(map(int, input().split()))
+solved = []
+q = 0
+penalties = 0
+for i in ans:
+    if q != int(i[0]):
+        print('new problem appears!')
+        penalties = 0
+        q = int(i[0])
+    if q != int(i[0]) and i[1] == 'WA':
+        penalties += 1
+
+    if i[1] == 'AC' and q not in solved:
+        solved.append(q)
+
+print('solved is', solved)
 
 
-li = [i for i in range(1, n+1)]
 
-a = 0
-b = 0
 
-permutations = list(itertools.permutations(li, n))
-# print('permutationsは', permutations)
-for i, v in enumerate(permutations):
-    if v == tuple(lia):
-        # print('発見！')
-        a = i+1
-    if v == tuple(lib):
-        # print('発見！')
-        b = i+1
+# corect answersの数はsolvedの長さに等しいのでlen(solved)で表せる。
+print(len(solved))
 
-print(abs(a-b))
+
+
+
