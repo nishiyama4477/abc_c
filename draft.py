@@ -13,21 +13,40 @@
 n, m = map(int, input().split())
 ans = [list(input().split()) for i in range(m)]
 
+if m == 0:
+    print(0)
+    quit()
+
 print(ans)
 
 solved = []
-q = 0
+q = int(ans[0][0])
+print(q)
+
+ac = 0
+wa = 0
+
 penalties = 0
-for i in ans:
-    if q != int(i[0]):
-        print('new problem appears!')
-        penalties = 0
-        q = int(i[0])
-    if q != int(i[0]) and i[1] == 'WA':
+
+
+for index, i in enumerate(ans):
+    print('○始まるよ○')
+    # 新しい問題だ！！
+    if i[1] == 'WA' and q not in solved:
+        print('まだ正解してないよ。だからwaを足したよ')
         penalties += 1
 
     if i[1] == 'AC' and q not in solved:
+        print('正解した問題が追加されたよ')
         solved.append(q)
+        ac += 1
+
+    if index != len(ans) - 1 and q != int(ans[index + 1][0]):
+        print('new problem appears!')
+        wa += penalties
+        penalties = 0
+        q = int(ans[index+1][0])
+        print('決算終了したよ。acは', ac, 'waは', wa, 'penaltiesは', penalties)
 
 print('solved is', solved)
 
@@ -36,6 +55,7 @@ print('solved is', solved)
 
 # corect answersの数はsolvedの長さに等しいのでlen(solved)で表せる。
 print(len(solved))
+print(wa)
 
 
 
