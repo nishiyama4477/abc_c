@@ -11,22 +11,34 @@
 # いちよ方針。まずsolvedな問題を分ける。それからq(question)を軸にpenaltiesを足していく。qが変わればpenaltiesをリセット。
 
 n, m = map(int, input().split())
-ans = [list(input().split()) for i in range(m)]
 
-if m == 0:
-    print(0, 0)
-    quit()
+flag = [False] * n
+cnt = [0] * n
 
-solved = []
-wa = 0
+ac, wa = 0, 0
 
-for i in ans:
-    if i[1] == 'WA' and i[0] not in solved:
-        wa += 1
-    if i[1] == 'AC' and i[0] not in solved:
-        solved.append(i[0])
+for i in range(m):
+    ques, val = map(str, input().split())
+    ques = int(ques)
 
-print(len(solved), wa)
+    if not flag[ques-1]:
+        if val == 'AC':
+            flag[ques-1] = True
+            ac += 1
+        else:
+            cnt[ques-1] += 1
+
+
+for j in range(n):
+    if flag[j]:
+        wa += cnt[j]
+
+print(ac, wa)
+
+
+
+
+
 
 
 

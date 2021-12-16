@@ -1,40 +1,27 @@
-N = int(input())
+N, M = map(int, input().split())
 
-A_list = []
-# 証言者ごとに集めた証言のリスト
-xy_list = []
-# 矛盾がなかった回答のカウンター
-ans = 0
-#
-for i in range(N):
-    A = int(input())
-    xy = [list(map(int, input().split())) for _ in range(A)]
-    xy_list.append(xy)
+# ここのflagはACが入ってきた時にTrueになる。　
+flag = [False] * N
+cnt = [0] * N
+ans1, ans2 = 0, 0
 
-print(xy_list)
-print(xy_list[0])
-# 1<<Nと2**Nは一緒。つまりstはパターンを表す。
-for st in range(1 << N):
-    # witness は 人を表す。test は 証言。
-    for witness, test in enumerate(xy_list):
-        # ここはただのパターンの抽出。←違う説。
-        if not st >> witness & 1:
-            continue
-        # それぞれのパターンに対してその証言が正しいか調べる
-        for person, testimony in test:
-            # 0-index
-            person -= 1
-            if st >> person & 1 != testimony:
-                break
 
+for _ in range(M):
+    p, S = map(str, input().split())
+    p = int(p)
+
+    if not flag[p - 1]:
+        # これは初のACが入ってきたときの処理。
+        if S == "AC":
+            flag[p - 1] = True
+            ans1 += 1
+        # ACがなくWAのときは該当の問題のcntを1up
         else:
-            continue
+            cnt[p - 1] += 1
 
-        break
+# ここでWAを決算してあげる。
+for i in range(N):
+    if flag[i]:
+        ans2 += cnt[i]
 
-    else:
-        temp_r = bin(st).count('1')
-        if temp_r > ans:
-            ans = temp_r
-
-print(ans)
+print(ans1, ans2)
