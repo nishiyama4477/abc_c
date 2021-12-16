@@ -17,54 +17,16 @@ if m == 0:
     print(0, 0)
     quit()
 
-# print(ans)
-
 solved = []
-q = int(ans[0][0])
-# print(q)
-
-ac = 0
 wa = 0
 
-penalties = 0
+for i in ans:
+    if i[1] == 'WA' and i[0] not in solved:
+        wa += 1
+    if i[1] == 'AC' and i[0] not in solved:
+        solved.append(i[0])
 
-# print('初期値は', q)
-
-for index, i in enumerate(ans):
-    # print('○始まるよ○')
-    # 新しい問題だ！！
-    if q != int(i[0]):
-        # print('new problem appears!')
-        wa += penalties
-        penalties = 0
-        q = int(i[0])
-        # print('決算終了したよ。acは', ac, 'waは', wa, 'penaltiesは', penalties)
-
-    if i[1] == 'WA' and q not in solved:
-        # print('まだ正解してないよ。だからwaを足したよ')
-        penalties += 1
-
-    if i[1] == 'AC' and q not in solved:
-        # print('正解した問題が追加されたよ')
-        solved.append(q)
-        ac += 1
-
-    if index == len(ans) - 1:
-        wa += penalties
-
-    # print('ac is', ac)
-    # print('wa is', wa)
-    # print('penalties is', penalties)
-
-
-
-# print('solved is', solved)
-
-
-
-
-# corect answersの数はsolvedの長さに等しいのでlen(solved)で表せる。
-print(ac, wa)
+print(len(solved), wa)
 
 
 
