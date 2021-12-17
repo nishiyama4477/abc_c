@@ -7,36 +7,23 @@
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 
 
-# ABC151
-# いちよ方針。まずsolvedな問題を分ける。それからq(question)を軸にpenaltiesを足していく。qが変わればpenaltiesをリセット。
-
-n, m = map(int, input().split())
-
-flag = [False] * n
-cnt = [0] * n
-
-ac, wa = 0, 0
-
-for i in range(m):
-    ques, val = map(str, input().split())
-    ques = int(ques)
-
-    if not flag[ques-1]:
-        if val == 'AC':
-            flag[ques-1] = True
-            ac += 1
-        else:
-            cnt[ques-1] += 1
+# ABC152
+n = int(input())
+permutation = [int(i) for i in input().split()]
 
 
-for j in range(n):
-    if flag[j]:
-        wa += cnt[j]
+count = 0
+for i in range(1, n+1):
+    left = permutation[i-1]
+    right = min(permutation[:i])
+    if left == right:
+        count += 1
+    else:
+        continue
+    # print('left is', left)
+    # print('right is', right)
 
-print(ac, wa)
-
-
-
+print(count)
 
 
 
