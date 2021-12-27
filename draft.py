@@ -8,25 +8,23 @@
 
 
 # ABC152
+
+# 実装しないといけないポイントとして大きく二つある。
+# ①: 条件にあうリスト（ここではrightとした）の最小値を取り出す。←ここでいかに早い処理を書けるか。
+# ②: それらを比べてleftが常にright以下であればcount += 1、それ以外はノーカン。
+
+
 n = int(input())
 permutation = [int(i) for i in input().split()]
 
-
 count = 0
-for i in range(1, n+1):
-    left = permutation[i-1]
-    right = min(permutation[:i])
-    if left == right:
+for i, v in enumerate(permutation):
+    left = v
+    right = list(set(permutation[:i+1]))[0]
+    if left <= right:
         count += 1
-    else:
-        continue
-    # print('left is', left)
-    # print('right is', right)
 
 print(count)
-
-
-
 
 
 
