@@ -21,12 +21,12 @@ permutation = [int(i) for i in input().split()]
 # print(permutation)
 
 count = 0
-for i, v in enumerate(permutation):
-    left = v
-    right = min(permutation[:i+1])
-    if left == right:
-        count += 1
+bench = permutation[0]
 
+for i in range(n):
+    if permutation[i] <= bench:
+        bench = permutation[i]
+        count += 1
 
 print(count)
 
