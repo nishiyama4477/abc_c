@@ -17,12 +17,16 @@
 n = int(input())
 permutation = [int(i) for i in input().split()]
 
+
+# print(permutation)
+
 count = 0
 for i, v in enumerate(permutation):
     left = v
-    right = list(set(permutation[:i+1]))[0]
-    if left <= right:
+    right = min(permutation[:i+1])
+    if left == right:
         count += 1
+
 
 print(count)
 
