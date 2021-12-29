@@ -7,29 +7,25 @@
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 
 
-# ABC152
+# ABC153
+n, special = map(int, input().split())
 
-# 実装しないといけないポイントとして大きく二つある。
-# ①: 条件にあうリスト（ここではrightとした）の最小値を取り出す。←ここでいかに早い処理を書けるか。
-# ②: それらを比べてleftが常にright以下であればcount += 1、それ以外はノーカン。
+monsters = list(int(i) for i in input().split())
 
+# print('n is', n)
+# print('special is', special)
+# print('monsters is', monsters)
 
-n = int(input())
-permutation = [int(i) for i in input().split()]
+if n <= special:
+    print (0)
+    exit()
 
+monsters.sort(reverse=True)
 
-# print(permutation)
+# print('sorted monsters is', monsters)
 
-count = 0
-bench = permutation[0]
+left_monsters = monsters[special:]
 
-for i in range(n):
-    if permutation[i] <= bench:
-        bench = permutation[i]
-        count += 1
+# print(left_monsters)
 
-print(count)
-
-
-
-
+print(sum(left_monsters))
