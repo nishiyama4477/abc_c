@@ -7,25 +7,15 @@
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 
 
-# ABC153
-n, special = map(int, input().split())
+# ABC154
+n = int(input())
 
-monsters = list(int(i) for i in input().split())
+numbers = list(i for i in map(int, input().split()))
 
-# print('n is', n)
-# print('special is', special)
-# print('monsters is', monsters)
 
-if n <= special:
-    print (0)
-    exit()
+answers = set(numbers)
 
-monsters.sort(reverse=True)
-
-# print('sorted monsters is', monsters)
-
-left_monsters = monsters[special:]
-
-# print(left_monsters)
-
-print(sum(left_monsters))
+if len(numbers) == len(answers):
+    print('YES')
+else:
+    print('NO')
