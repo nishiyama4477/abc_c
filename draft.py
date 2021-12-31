@@ -23,19 +23,15 @@ for i in range(n):
         where = words.index(word)
         counter[where] += 1
 
-
 # print(words)
 # print(counter)
 
-zipped = list(zip(counter, words))
+zipped = list(zip(words, counter))
 
-zipped2 = sorted(zipped, reverse=True)
+zipped2 = sorted(zipped)
 
-# print(zipped2)
+most = sorted(counter, reverse=True)[0]
 
-most = zipped2[0][0]
-
-# print(most)
-for key, value in zipped2:
+for value, key in zipped2:
     if key == most:
         print(value)
