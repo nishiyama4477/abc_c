@@ -7,15 +7,35 @@
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 
 
-# ABC154
+# ABC155
+
 n = int(input())
 
-numbers = list(i for i in map(int, input().split()))
+words = []
+counter = []
+
+for i in range(n):
+    word = input()
+    if word not in words:
+        words.append(word)
+        counter.append(1)
+    else:
+        where = words.index(word)
+        counter[where] += 1
 
 
-answers = set(numbers)
+# print(words)
+# print(counter)
 
-if len(numbers) == len(answers):
-    print('YES')
-else:
-    print('NO')
+zipped = list(zip(counter, words))
+
+zipped2 = sorted(zipped, reverse=True)
+
+# print(zipped2)
+
+most = zipped2[0][0]
+
+# print(most)
+for key, value in zipped2:
+    if key == most:
+        print(value)
