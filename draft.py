@@ -8,6 +8,9 @@
 
 
 # ABC155
+# ①１番多く登場したやつを探す。
+# ②それをlexicographicalに出力する。
+# TLEを防ぐにはたぶんforループ一回で済まさないといけない。
 
 n = int(input())
 
@@ -35,3 +38,8 @@ most = sorted(counter, reverse=True)[0]
 for value, key in zipped2:
     if key == most:
         print(value)
+
+
+
+print(winner)
+
