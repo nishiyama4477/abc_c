@@ -1,27 +1,33 @@
-N, M = map(int, input().split())
+# ABC155　解答
 
-# ここのflagはACが入ってきた時にTrueになる。　
-flag = [False] * N
-cnt = [0] * N
-ans1, ans2 = 0, 0
+import collections
+
+n = int(input())
+s = []
+for i in range(n):
+    s.append(input())
+
+# print(n)
+# print(s)
 
 
-for _ in range(M):
-    p, S = map(str, input().split())
-    p = int(p)
+c = collections.Counter(s)
+c_s = c.most_common()
+m = c.most_common()[0][1]
 
-    if not flag[p - 1]:
-        # これは初のACが入ってきたときの処理。
-        if S == "AC":
-            flag[p - 1] = True
-            ans1 += 1
-        # ACがなくWAのときは該当の問題のcntを1up
-        else:
-            cnt[p - 1] += 1
+print(c)
+print(c_s)
+print(m)
 
-# ここでWAを決算してあげる。
-for i in range(N):
-    if flag[i]:
-        ans2 += cnt[i]
 
-print(ans1, ans2)
+ans = []
+for j in range(len(c_s)):
+    if c_s[j][1] != m:
+        break
+    else:
+        ans.append(c_s[j][0])
+
+print('ans is', ans)
+ans.sort()
+for t in ans:
+    print(t)

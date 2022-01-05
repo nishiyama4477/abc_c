@@ -18,6 +18,7 @@ words = []
 counter = []
 
 for i in range(n):
+    # print('ループ', i+1, '回目')
     word = input()
     if word not in words:
         words.append(word)
@@ -26,20 +27,36 @@ for i in range(n):
         where = words.index(word)
         counter[where] += 1
 
+    # print('現時点でのwords', words)
+    # print('現時点でのcounter', counter)
+
+
 # print(words)
 # print(counter)
 
-zipped = list(zip(words, counter))
+# zipped = list(zip(words, counter))
+#
+# print(zipped)
+#
+# zipped2 = sorted(zipped)
+#
+# print(zipped2)
+#
+# most = sorted(counter, reverse=True)[0]
 
-zipped2 = sorted(zipped)
+sample_list = sorted(list(zip(counter, words)), reverse=True)
+# print(sample_list)
 
-most = sorted(counter, reverse=True)[0]
+most = list(sample_list[0])[0]
+answer = []
 
-for value, key in zipped2:
-    if key == most:
-        print(value)
+for i, v in sample_list:
+    if i == most:
+        answer.append(v)
+    else:
+        break
 
+answer.sort()
 
-
-print(winner)
-
+for i in answer:
+    print(i)
