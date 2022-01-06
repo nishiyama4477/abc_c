@@ -14,8 +14,13 @@
 n = int(input())
 
 people = list(map(int, input().split()))
+print('people is', people)
 
-place = -(-sum(people) //  len(people))
+# このplace決めが違う可能性が高い。
+place = -(-sum(people) // len(people))
+print('place is', place)
+
+# ここから下はおそらく間違っていない。
 
 ans = 0
 
