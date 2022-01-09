@@ -7,39 +7,40 @@
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 
 
-# ABC156
-# 仮定①：これは与えられた数n個の平均が目的地になる。2.5などの時はおそらくどっちでもいいか、どちらか。
-# なのでまずは切り捨てで作ってみる。
-# 仮定②：上手くいかなかったので仮定二つ目。for rangeで数直線一つずつみる方法。予想はTLE。
+# ABC157
+# 一つ疑問があって、ある桁の予想が被ったときは−1なのか、どちらかが合っていればそれを採用するのか。
+# とりまダブったら-1で実装する。
+n, m = map(int, input().split())
 
-n = int(input())
+pre = [10] * n
+# print(pre)
 
-people = list(map(int, input().split()))
-# print('people is', people)
+for i in range(m):
+    num = list(int(o) for o in input().split())
+    if pre[num[0] - 1] == 10:
+        pre[num[0] - 1] = num[1]
+    # 予想がダブった時
+    if pre[num[0] - 1] != 10 and num[1] != pre[num[0] - 1]:
+        print(-1)
+        quit()
+    # ２桁以上の数で１桁目が0の時
+    if n != 1 and num[0] == 1 and num[1] == 0:
+        print(-1)
+        quit()
 
-# このplace決めが違う可能性が高い。
-# place = -(-sum(people) // len(people))
-# print('place is', place)
-#
-# # ここから下はおそらく間違っていない。
-#
-# ans = 0
-#
-# for i in people:
-#     point = (i - place) ** 2
-#     ans += point
-#
-# print(ans)
-ans = float('inf')
+# print(pre)
 
-for place in range(1, max(people)+1):
-    # print('place is', place)
-    points = 0
-    for j in people:
-        # print('人は', j)
-        p = (j - place) ** 2
-        points += p
-    if points <= ans:
-        ans = points
+# あとはpreの10の部分を最小化してあげればいい。
 
-print(ans)
+if pre[0] == 10:
+    pre[0] = 1
+if pre[1] == 10:
+    pre[1] = 0
+if pre[2] == 10:
+    pre[2] = 0
+
+# print(pre)
+
+ans = [str(i) for i in pre]
+
+print(''.join(ans))
