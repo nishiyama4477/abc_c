@@ -31,5 +31,6 @@ for i in range(int(mi10), int(ma10) + 1):
     if math.floor(i * 0.08) == a:
         print(i)
         exit()
+print(-1)
 
 
