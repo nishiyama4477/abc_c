@@ -7,53 +7,28 @@
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 
 
-# ABC157
-# 一つ疑問があって、ある桁の予想が被ったときは−1なのか、どちらかが合っていればそれを採用するのか。
-# とりまダブったら-1で実装する。
-n, m = map(int, input().split())
+# ABC158
+# 仮説①：forで回す。が、範囲は最小から最大まで決められるはず。例えば、a=2、b=2のとき、
+# 最小はx = 2.9999 / 0.08、最大はx = 2/0.1 の時。この範囲に消費税10%があれあ出力する。
+# ポイントは四捨五入ではなく切り捨て。　
+import math
+a, b = map(int, input().split())
 
-pre = [10] * n
-# print(pre)
+mi8 = a / 0.08
+ma8 = (a + 1) / 0.08
 
-for i in range(m):
-    num = list(int(o) for o in input().split())
-    if pre[num[0] - 1] == 10:
-        pre[num[0] - 1] = num[1]
-    # 予想がダブった時
-    if pre[num[0] - 1] != 10 and num[1] != pre[num[0] - 1]:
-        print(-1)
-        quit()
-    # ２桁以上の数で１桁目が0の時
-    if n != 1 and num[0] == 1 and num[1] == 0:
-        print(-1)
-        quit()
+print('mi8 is', mi8)
+print('ma8 is', ma8)
 
-# print(pre)
-# ↑ここまではオッケー
-# ここから下が出来ていない。0の出力とか、forで１か０かの処理をするところとか。
-# あとはpreの10の部分を最小化してあげればいい。
+mi10 = a / 0.10
+ma10 = (a + 1) / 0.10
+
+print('mi10 is', mi10)
+print('ma10 is', ma10)
+
+for i in range(int(mi10), int(ma10) + 1):
+    if math.floor(i * 0.08) == b:
+        print(i)
+        exit()
 
 
-# if pre[0] == 10:
-#     pre[0] = 1
-# if pre[1] == 10:
-#     pre[1] = 0
-# if pre[2] == 10:
-#     pre[2] = 0
-
-if n != 1:
-    for i in range(n):
-        if pre[i] == 10:
-            if i == 0:
-                print(-1)
-                exit()
-            pre[i] = 0
-
-
-if n == 1:
-    if pre == 10:
-        pre = 0
-
-ans = [str(i) for i in pre]
-
-print(''.join(ans))
