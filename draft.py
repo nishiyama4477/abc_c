@@ -17,17 +17,18 @@ a, b = map(int, input().split())
 mi8 = a / 0.08
 ma8 = (a + 1) / 0.08
 
-print('mi8 is', mi8)
-print('ma8 is', ma8)
+# print('mi8 is', mi8)
+# print('ma8 is', ma8)
 
-mi10 = a / 0.10
-ma10 = (a + 1) / 0.10
+mi10 = b / 0.10
+ma10 = (b + 1) / 0.10
 
-print('mi10 is', mi10)
-print('ma10 is', ma10)
+# print('mi10 is', mi10)
+# print('ma10 is', ma10)
 
 for i in range(int(mi10), int(ma10) + 1):
-    if math.floor(i * 0.08) == b:
+    # print('i is', i)
+    if math.floor(i * 0.08) == a:
         print(i)
         exit()
 
