@@ -15,16 +15,20 @@ import math
 a, b = map(int, input().split())
 
 mi8 = a / 0.08
-ma8 = (a + 1) / 0.08
+ma8 = (a + 0.99) / 0.08
 
 # print('mi8 is', mi8)
 # print('ma8 is', ma8)
+# print('確認：', mi8 * 0.08)
+# print('確認：', ma8 * 0.08)
 
 mi10 = b / 0.10
-ma10 = (b + 1) / 0.10
+ma10 = (b + 0.99) / 0.10
 
 # print('mi10 is', mi10)
 # print('ma10 is', ma10)
+# print('確認：', mi10 * 0.10)
+# print('確認：', ma10 * 0.10)
 
 for i in range(int(mi10), int(ma10) + 1):
     # print('i is', i)
