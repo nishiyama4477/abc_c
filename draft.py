@@ -7,18 +7,43 @@
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 
 
-# ABC159
-# 仮説①：Lをいかにして３桁の掛け算にするか、それらを掛け合わせて出来る数を最大化させる。
-# ポイントは３で割り切れない数がきた時。
+# ABC160
+# 仮説1：①隣り合う数の差をforで出し、それをlistにappendする。②listからlen(As)-1個取り出す組み合わせの中で最小のモノが答え。
+
+from itertools import combinations
+
+k, n = map(int, input().split())
+As = list(int(i) for i in input().split())
+
+distances = []
+
+for i in range(len(As)):
+    if i == len(As) - 1:
+        v = As[i]
+        # print('v is', v)
+        dif = abs(k - v)
+        # print('dif is', dif)
+        distances.append(dif)
+    else:
+        v = As[i]
+        v2 = As[i+1]
+        dif = abs(v - v2)
+        distances.append(dif)
+
+# print('distances is', distances)
+
+a = list(combinations(distances, 2))
+
+# print('組み合わせは', a)
+
+a_sum = list(sum(i) for i in a)
+
+# print('それぞれ距離は', a_sum)
+
+# print(a_sum)
+
+print(min(a_sum))
 
 
-l = int(input())
 
-l3 = l // 3
-# actl3 = l / 3
 
-# print(l3)
-# print(actl3)
-
-print(l3**3)
-# print(actl3**3)
