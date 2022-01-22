@@ -20,59 +20,54 @@ k, n = map(int, input().split())
 As = list(int(i) for i in input().split())
 print(As)
 
-clock = As[-1] - As[0]
-print(clock)
-unti_clock = As[0] + (k - As[-1])
-print(unti_clock)
+atama = As[-1] - As[0]
+ketu = k - As[-1] + As[0]
 
-if clock <= unti_clock:
-    print('始点から時計回りにいくで')
-    print(clock)
+
+print(atama)
+print(ketu)
+
+
+#　円の形をした池描き、始点と終点を結んだ時の扇型の形。鋭角だと単純に始点から終点をなぞれば良い。鈍角だと真ん中から始まって終点から始点をまたぐ感じ。
+# おそらく鈍角時にどの真ん中から始めるかが鍵な気がする。
+if atama >= ketu:
+    print('これは鋭角')
+    # 鋭角の時、
 else:
-    print('始点から半時計回りにいくで')
-    # print(unti_clock + sum(As[1:]))
-    for i in range(len(As[1:])):
-        if i == len(As[1:]) - 1:
-            break
-        else:
-            kyori = As[i+2] - As[i+1]
-            print('kyori is', kyori)
-            unti_clock += kyori
-    print(unti_clock)
+    print('これは鈍角')
+    from_start = As[1] - As[0]
+    from_end = As[-1] - As[len(As) - 2]
+    if from_start >= from_end:
+        print('真ん中の２番目から始点to終点')
+    else:
+        print('真ん中のケツから２番目から終点to始点)')
 
 
 
 
-# distances = []
-#
-# for i in range(len(As)):
-#     if i == len(As) - 1:
-#         v = As[i]
-#         # print('v is', v)
-#         dif = abs(k - v)
-#         # print('dif is', dif)
-#         distances.append(dif)
-#     else:
-#         v = As[i]
-#         v2 = As[i+1]
-#         dif = abs(v - v2)
-#         distances.append(dif)
-#
-# # print('distances is', distances)
-#
-# a = list(combinations(distances, 2))
-#
-# # print('組み合わせは', a)
-#
-# a_sum = list(sum(i) for i in a)
-#
-# # print('それぞれ距離は', a_sum)
-#
-# a_sum.sort()
-#
-# print(a_sum[0])
 
-# print(min(a_sum))
+
+
+# clock = As[-1] - As[0]
+# print(clock)
+# unti_clock = As[0] + (k - As[-1])
+# print(unti_clock)
+#
+# if clock <= unti_clock:
+#     print('始点から時計回りにいくで')
+#     print(clock)
+# else:
+#     print('始点から半時計回りにいくで')
+#     # print(unti_clock + sum(As[1:]))
+#     for i in range(len(As[1:])):
+#         if i == len(As[1:]) - 1:
+#             break
+#         else:
+#             kyori = As[i+2] - As[i+1]
+#             print('kyori is', kyori)
+#             unti_clock += kyori
+#     print(unti_clock)
+
 
 
 
