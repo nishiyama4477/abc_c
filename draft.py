@@ -48,6 +48,7 @@ else:
 
 
 
+
 # clock = As[-1] - As[0]
 # print(clock)
 # unti_clock = As[0] + (k - As[-1])
