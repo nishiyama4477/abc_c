@@ -18,58 +18,52 @@ from itertools import combinations
 
 k, n = map(int, input().split())
 As = list(int(i) for i in input().split())
-print(As)
-
-atama = As[-1] - As[0]
-ketu = k - As[-1] + As[0]
-
-
-print(atama)
-print(ketu)
-
+# print(As)
 
 #　円の形をした池描き、始点と終点を結んだ時の扇型の形。鋭角だと単純に始点から終点をなぞれば良い。鈍角だと真ん中から始まって終点から始点をまたぐ感じ。
-# おそらく鈍角時にどの真ん中から始めるかが鍵な気がする。
-if atama >= ketu:
-    print('これは鋭角')
-    # 鋭角の時、
-else:
-    print('これは鈍角')
-    from_start = As[1] - As[0]
-    from_end = As[-1] - As[len(As) - 2]
-    if from_start >= from_end:
-        print('真ん中の２番目から始点to終点')
-    else:
-        print('真ん中のケツから２番目から終点to始点)')
+# おそらく鈍角時にどの真ん中から始めるかが鍵な気がする
+# 上のは間違い。なぜなら、始点と終点は変わるから。ベストな始点と終点の組み合わせが鋭角か鈍角か。強いて言うならね。でも鋭角と鈍角の考え方自体がおかしい説。
+# 仮説２：まずn個の家の隣あう家同士の距離が一番遠い２軒を見つける。それらの家が始点と終点。
+# それらでリストをスライスして、短い方をなぞるようにclockwiseかanticlockwiseかを決める。
 
 
+dis = []
 
+most_dis = -float('inf')
 
+for i in range(len(As)):
+    if i == len(As) - 1:
+        to = As[i]
+        frm = As[0]
+        kyori = k - to + frm
+        dis.append(kyori)
+        if most_dis <= kyori:
+            most_dis = kyori
+            left = frm
+            right = to
+        break
+    to = As[i+1]
+    frm = As[i]
+    kyori = to - frm
+    dis.append(kyori)
+    if most_dis <= kyori:
+        most_dis = kyori
+        left = frm
+        right = to
 
+# print('dis is', dis)
+# print('most_dis is', most_dis)
 
+dis.remove(most_dis)
 
-
-# clock = As[-1] - As[0]
-# print(clock)
-# unti_clock = As[0] + (k - As[-1])
-# print(unti_clock)
+print(sum(dis))
+# # leftとrightは始点と終点候補
+# print('left is', left)
+# print('right is', right)
 #
-# if clock <= unti_clock:
-#     print('始点から時計回りにいくで')
-#     print(clock)
-# else:
-#     print('始点から半時計回りにいくで')
-#     # print(unti_clock + sum(As[1:]))
-#     for i in range(len(As[1:])):
-#         if i == len(As[1:]) - 1:
-#             break
-#         else:
-#             kyori = As[i+2] - As[i+1]
-#             print('kyori is', kyori)
-#             unti_clock += kyori
-#     print(unti_clock)
-
-
-
-
-
+# # leftの原点との距離をs、rightの右端との距離をtとおく。と、s = left、t = k - right
+# s = left
+# t = k - right
+#
+# if s>=t:
+#
