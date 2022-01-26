@@ -12,16 +12,37 @@
 
 n, k = map(int, input().split())
 
-sample = n / k
-# print(sample)
+amari = n % k
 
-min_n = n
+answer = [0, 1, 2]
 
-for i in range(n):
-    a = abs(n-k)
-    # print('a is', a)
-    if min_n > a:
-        min_n = a
-        n = a
 
-print(min_n)
+print(amari)
+
+
+
+
+
+
+# if n >= k:
+#     divided = n
+#     divisor = k
+# else:
+#     divided = k
+#     divisor = n
+#
+# left_or = divided % divisor
+#
+# print('あまりは', left_or)
+#
+# min_n = n
+#
+# for i in range(n):
+#     a = abs(n-k)
+#     # print('a is', a)
+#     n = a
+#     if min_n > a:
+#         min_n = a
+#
+#
+# print(min_n)
