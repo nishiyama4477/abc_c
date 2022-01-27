@@ -9,15 +9,20 @@
 
 # ABC161
 # 仮説１：forループを回してmin_num 的なのを設定して更新していくプログラム
+import math
 
 n, k = map(int, input().split())
 
-amari = n % k
+if n > k:
+    when = math.ceil(n/k)
+    # print(when, '回目で最小')
+    min_n = abs(n - k*when)
+    print(min_n)
+else:
+    zero = abs(n - k)
+    one = abs(zero - k)
+    print(min([zero, one]))
 
-answer = [0, 1, 2]
-
-
-print(amari)
 
 
 
