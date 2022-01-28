@@ -9,19 +9,18 @@
 
 # ABC161
 # 仮説１：forループを回してmin_num 的なのを設定して更新していくプログラム
+# 肝はどうやって例３を解くか。
 import math
 
 n, k = map(int, input().split())
 
-if n > k:
-    when = math.ceil(n/k)
-    # print(when, '回目で最小')
-    min_n = abs(n - k*when)
-    print(min_n)
-else:
-    zero = abs(n - k)
-    one = abs(zero - k)
-    print(min([zero, one]))
+
+# 前回のコード。勝手に法則を見つけたやつ。→解説を見た結果、近かった。n / k はボーダーで、そこからは数は２パターンしか取らないことを読み取る。
+divided = math.floor(n / k)
+
+base = n - k*divided
+
+print(min(abs(base), abs(base - k)))
 
 
 
