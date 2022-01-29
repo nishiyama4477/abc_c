@@ -16,37 +16,9 @@ n, k = map(int, input().split())
 
 
 # 前回のコード。勝手に法則を見つけたやつ。→解説を見た結果、近かった。n / k はボーダーで、そこからは数は２パターンしか取らないことを読み取る。
-divided = math.floor(n / k)
+divided = n % k
+# print(divided)
+more = abs(divided - k)
 
-base = n - k*divided
+print(min(divided, more))
 
-print(min(abs(base), abs(base - k)))
-
-
-
-
-
-
-
-# if n >= k:
-#     divided = n
-#     divisor = k
-# else:
-#     divided = k
-#     divisor = n
-#
-# left_or = divided % divisor
-#
-# print('あまりは', left_or)
-#
-# min_n = n
-#
-# for i in range(n):
-#     a = abs(n-k)
-#     # print('a is', a)
-#     n = a
-#     if min_n > a:
-#         min_n = a
-#
-#
-# print(min_n)
