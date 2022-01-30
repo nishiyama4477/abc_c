@@ -7,18 +7,36 @@
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 
 
-# ABC161
-# 仮説１：forループを回してmin_num 的なのを設定して更新していくプログラム
-# 肝はどうやって例３を解くか。
-import math
+# ABC162
+# 仮説１：取り出すlistを作ってあげて、そこからitertoolsで取り出す。
+import itertools
+import random
 
-n, k = map(int, input().split())
+k = int(input())
+
+base = []
+
+for i in range(3):
+    num = []
+    for j in range(1, k+1):
+        num.append(j)
+    base.append(num)
+
+print(base[0])
+
+ans = 0
+
+for i in range(1, k+1):
+    a = random.choice(base[0])
+    b = random.choice(base[1])
+    c = random.choice(base[2])
+    added = sum([a, b, c])
+    ans += added
+    base[0].remove(a)
+    base[1].remove(b)
+    base[2].remove(c)
+
+print(ans)
 
 
-# 前回のコード。勝手に法則を見つけたやつ。→解説を見た結果、近かった。n / k はボーダーで、そこからは数は２パターンしか取らないことを読み取る。
-divided = n % k
-# print(divided)
-more = abs(divided - k)
-
-print(min(divided, more))
 
