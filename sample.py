@@ -1,5 +1,2 @@
-# ABC160
+# ABC161
 
-a = (1,2)
-
-print(sum(a))
