@@ -7,25 +7,21 @@
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 
 
-# ABC162
-# 仮説１：取り出すlistを作ってあげて、そこからitertoolsで取り出す。
-# 解法はユークリッドの互除法を使うことだった！！
-# とりまgcdを使った後残りの２数に対してユークリッドしてみようと思う。
-import math
+# ABC163
 
-k = int(input())
+n = int(input())
 
-sum = 0
+As = [int(i) for i in input().split()]
 
-for i in range(1,k+1):
-    for j in range(1, k+1):
-        i_j = math.gcd(i,j)
-        for l in range(1, k+1):
-            num = math.gcd(i_j, l)
-            sum += num
+counter = [0] * n
 
-print(sum)
+# print(counter)
 
+for i in As:
+    counter[i-1] += 1
+
+for i in counter:
+    print(i)
 
 
 
