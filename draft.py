@@ -7,22 +7,16 @@
 # data['img'] = base64.encodebytes(img).decode('utf-8')
 
 
-# ABC163
+# ABC164
 
 n = int(input())
+items = []
 
-As = [int(i) for i in input().split()]
+for i in range(n):
+    item = input()
+    items.append(item)
 
-counter = [0] * n
-
-# print(counter)
-
-for i in As:
-    counter[i-1] += 1
-
-for i in counter:
-    print(i)
-
+print(len(set(items)))
 
 
 
