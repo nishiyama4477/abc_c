@@ -10,14 +10,12 @@
 # ABC164
 
 n = int(input())
-items = []
 
-for i in range(n):
-    item = input()
-    items.append(item)
+items = list(input() for i in range(n))
 
-print(len(set(items)))
+kind = len(set(items))
 
+print(kind)
 
 
 
