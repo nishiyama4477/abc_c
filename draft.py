@@ -61,16 +61,38 @@
 
 # 仮説２：まず確認したい条件が３つ。①b > aである（index高ーindex低である）②c < m(cは少なくともAのとりうる最大値から１は引かれている）
 # ③条件が被ることはない。（a1, b1, c1)　!= (a2, b2, c2)
-
+from itertools import combinations_with_replacement as comb_repl
+import numpy as np
 n, m, q = map(int, input().split())
 
-quads = []
+quads = [[]]
+quads[0] = list(map(int, input().split()))
 
-for i in range(q):
-    quad = [int(v) for v in input().split()]
-    quads.append(quad)
+for i in range(q-1):
+    quads.append(list(map(int, input().split())))
 
-print(quads)
+# print(quads)
+
+comb_range = np.arange(1, m+1)
+# print(comb_range)
+
+a = comb_repl(comb_range, n)
+
+total = []
+
+for i, comb in enumerate(a):
+    total.append(0)
+    for quad in quads:
+        if comb[quad[1]-1] - comb[quad[0]-1] == quad[2]:
+            total[i] += quad[3]
+
+print(max(total))
+
+
+
+
+
+
 
 
 
